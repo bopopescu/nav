@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_additional_head %}
+  <link href="{{ STATIC_URL }}css/nav/arnold.css" rel="stylesheet">
+  <script>require(["src/arnold"]);</script>
+{% endblock %}
+
+{% block base_content %}
+
+  {% with tool=current_user_data.tools|get_tool:'Arnold' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+
+  <ul class="button-group">
+    <li>
+      <a href="{% url arnold-search %}" class="button small secondary {% if active.search  %}active{% endif %}">
+        Search
+        <i class="fa fa-search"></i>
+      </a>
+    </li>
+    <li>
+      <a href="{% url arnold-manual-detention %}" class="button small secondary {% if active.manualdetention %}active{% endif %}">
+        Manual detention
+        <i class="fa fa-lock"></i>
+      </a>
+    </li>
+  </ul>
+
+  {% block content %}
+  {% endblock %}
+
+{% endblock %}

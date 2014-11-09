@@ -1,0 +1,52 @@
+{% extends "alertprofiles/base.html" %}
+
+{% block tabcontent %}
+
+{% block top_links %}
+{% endblock %}
+
+<form action="{{ form_action }}" method="post">
+
+  <h4>{% block captioncontent %}{% endblock %}</h4>
+
+  <table class="listtable">
+    <thead>
+        <tr>
+        {% block theadcols %}
+            <th></th>
+            <th>Name</th>
+        {% endblock %}
+        </tr>
+    </thead>
+
+    {% if object_list %}
+        <tbody>
+        {% block tbodycontent %}
+        {% endblock %}
+        </tbody>
+    {% endif %}
+
+    {# FIXME colspan="0", replace with block override perhaps? #}
+    <tfoot>
+        <tr>
+            <th colspan="{% block tablecolspan %}2{% endblock %}">
+                {% include "alertprofiles/paginator.html" %}
+            </th>
+        </tr>
+    </tfoot>
+</table>
+
+{% block bottom_form %}
+<div>
+    {% block additional_fields %}
+    {% endblock %}
+    <input type="submit" value="Delete selected" class="button small secondary" />
+</div>
+{% endblock %}
+
+</form>
+
+{% block bottom_links %}
+{% endblock %}
+
+{% endblock %}

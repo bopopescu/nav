@@ -1,0 +1,42 @@
+{% extends "devicehistory/base.html" %}
+
+{% block tabcontent %}
+
+  {% if modules %}
+
+    {% if confirm_delete %}
+      <h4>Do you really want to remove the selected modules?</h4>
+    {% else %}
+      <p class="panel">
+        These modules are down. If you know that they are permanently gone, you
+        may remove them.
+      </p>
+    {% endif %}
+
+    <form method="post"
+            {% if confirm_delete %}
+          action="{% url devicehistory-do_delete_module %}"
+            {% else %}
+          action="{% url devicehistory-module %}"
+            {% endif %}
+            >
+
+      {% include 'devicehistory/frag_moduletable.html' %}
+
+      {% if confirm_delete %}
+        <input type="hidden" name="confirm_delete" value="1"/>
+        <button type="submit">Yes</button>
+        <a href="{% url devicehistory-module %}" class="button secondary">No</a>
+      {% else %}
+        <button type="submit">Remove modules</button>
+      {% endif %}
+
+    </form>
+
+  {% else %}
+    <p class="panel">
+      No modules down
+    </p>
+  {% endif %}
+
+{% endblock %}

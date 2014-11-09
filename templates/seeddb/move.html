@@ -1,0 +1,62 @@
+{% extends "seeddb/base.html" %}
+
+{% block content %}
+
+    <p><a href="{{ back_url }}">Back to list</a></p>
+
+
+<form action="" method="post">
+<table class="listtable">
+    <caption>
+        {{ title }}
+    </caption>
+    <thead>
+        <tr>
+        {% for values in values.0.values %}
+            <th>{{ values.0 }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for row in values %}
+        <tr>
+        {% if not confirm %}
+            <input type="hidden" name="object" value="{{ row.pk }}" />
+        {% endif %}
+        {% for value in row.values %}
+            <td>{{ value.1|default_if_none:"" }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% if confirm %}
+<p>
+    {{ operation_form }}
+    {% for key,value in data.items %}
+    <input type="hidden" name="{{ key }}" value="{{ value.pk }}" />
+    {% endfor %}
+    {% for row in values %}
+    <input type="hidden" name="object" value="{{ row.pk }}" />
+    {% endfor %}
+    <input type="hidden" name="move" value="yes" />
+    <input type="submit" name="save" value="Confirm and save changes" class="button small"/>
+</p>
+{% else %}
+<table class="listtable">
+    {{ form.as_table }}
+    <tr>
+        <th></th>
+        <td>
+            <input type="hidden" name="move" value="yes" />
+            <input type="submit" name="preview" value="Next" class="button small"/>
+        </td>
+    </tr>
+</table>
+{% endif %}
+
+<input type="hidden" name="step" value="{{ step }}" />
+</form>
+{% endblock %}

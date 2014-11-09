@@ -1,0 +1,21 @@
+@import "../navsettings";
+
+#portadmin-wrapper {
+    .changed {
+        background-color: bisque;
+    }
+    .success {
+        background-color: $success-box-bg;
+    }
+    .error {
+        background-color: $alert-box-bg;
+    }
+    .error-column {
+        line-height: inherit;
+        margin: 0;
+        .alert-box {
+            margin: 0;
+        }
+    }
+}
+

@@ -1,0 +1,1 @@
+Link up on {{ netbox.sysname }}, {{ interface }} ({{ ifalias }})

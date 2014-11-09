@@ -1,0 +1,84 @@
+{% extends "alertprofiles/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block tabcontent %}
+  {% block backnavigation %}{% endblock %}
+
+  <h4>
+    {% block headercontent %}
+      {% if detail_id %}
+        Filter details
+      {% else %}
+        New filter
+      {% endif %}
+    {% endblock %}
+  </h4>
+
+  <form action="{% block url_edit %}{% endblock %}" method="post" >
+    {% crispy form %}
+
+    {% block form_additional_fields %}
+    {% endblock %}
+
+    {% if owner %}
+      {% if detail_id %}
+        <input type="submit" value="Save changes" class="button small"/>
+      {% else %}
+        <input type="submit" value="Save new" class="button small"/>
+      {% endif %}
+    {% endif %}
+  </form>
+
+  {% if detail_id %}
+
+    {% block filter_content %}
+
+    <div class="expressionstable">
+        {% block expressions %}
+        <h5>
+          {% block expressions_caption_content %}
+          {% endblock %}
+        </h5>
+        <form action="{% block url_remove_expression %}{% endblock %}" method="post">
+            <table class="listtable">
+                <thead>
+                    <tr>
+                    {% block expressions_thead_cols %}
+                    {% endblock %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% block expressions_tbody_content %}
+                {% endblock %}
+                </tbody>
+            </table>
+
+            {% if owner%}
+                {% block expressions_extra_fields %}
+                <p>
+                    <input type="hidden" name="id" value="{{ detail_id }}" />
+                    <input type="submit" name="delete" value="Delete selected" class="button small secondary" />
+                </p>
+                {% endblock %}
+            {% endif %}
+        </form>
+        {% endblock expressions %}
+    </div>
+
+    <div class="addexpressionform">
+        <form action="{% block url_add_expression %}{% endblock %}" method="post">
+        {% block addexpression %}
+            <p>
+                <input type="hidden" name="id" value="{{ detail_id }}" />
+                <input type="submit" value="Add" class="button small" />
+            </p>
+        {% endblock addexpression %}
+        </form>
+    </div>
+
+    {% endblock filter_content %}
+
+  {% endif %}
+
+{% endblock %}

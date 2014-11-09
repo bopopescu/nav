@@ -1,0 +1,73 @@
+{% extends "radius/base.html" %}
+{% load crispy_forms_tags %}
+{% load radius %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="small-9 column">
+      <h4 class="subheader">Show top 6 talkers</h4>
+    </div>
+    <div class="small-3 column">
+      <a href="javascript:void(0);" class="button small secondary right"
+         data-reveal-id="account-chart-hints" data-reveal>About the data</a>
+    </div>
+  </div>
+
+  <div id="form" class="row">
+    <div class="medium-6 columns">
+      {% crispy form %}
+    </div>
+  </div>
+
+  <ul class="large-block-grid-2">
+
+    {% for table in tables %}
+      <li>
+        <table id="charttable{{ forloop.counter }}" class="listtable full-width">
+          <caption>
+            {{ table.0 }}<br>
+          </caption>
+
+          <thead>
+          <tr>
+            <th>Pos.</th>
+            <th>Username</th>
+            <th>Transferred</th>
+            <th>Time</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          {% for row in table.1 %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td><a>{{ row.username|default:"" }}</a></td>
+              <td>{{ row.sortfield|filesizeformat }}</td>
+              <td>{{ row.acctsessiontime|time_from_seconds }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% block radius-helper %}
+    <div id="account-chart-hints" class="reveal-modal" data-reveal>
+      <h3>About top talkers</h3>
+
+      <blockquote>"There are three types of lies - lies, damn lies, and
+        statistics." <cite>Mark Twain</cite>
+      </blockquote>
+
+      <p>
+        Shows data from sessions that have ended, with an explicit
+        <code>Stop</code> message. Top talkers lists sessions using the <em>end
+        time</em> , but the data could actually have been transferred before
+        this period.
+      </p>
+    </div>
+  {% endblock %}
+
+{% endblock content %}

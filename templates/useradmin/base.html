@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_title %}NAV - User Administration{% endblock %}
+
+{% block base_content %}
+
+  {% with tool=current_user_data.tools|get_tool:'User Administration' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+  {% block content %}
+  {% endblock %}
+
+{% endblock %}

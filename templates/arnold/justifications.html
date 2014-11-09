@@ -1,0 +1,59 @@
+{% extends "arnold/tabs.html" %}
+{% load crispy_forms_tags %}
+
+{% block tabcontent %}
+
+    {% comment %} List all existing justifications {% endcomment %}
+    <div class="row">
+        <div class="medium-6 column">
+            <table class="listtable expand">
+                <caption>Existing reasons for detention</caption>
+
+                <thead>
+                <tr>
+                    <th>Reason</th>
+                    <th>Description</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+
+                {% if justifications %}
+                    <tbody>
+                    {% for justification in justifications %}
+                        <tr>
+                            <td>{{ justification.name }}</td>
+                            <td>{{ justification.description }}</td>
+                            <td>
+                                <a href="{% url arnold-justificatons-edit justification.id %}"
+                                   class="button tiny secondary">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                {% if justification.deletable %}
+                                    <a href="{% url arnold-justificatons-delete justification.id %}"
+                                       class="button tiny alert">
+                                        Delete
+                                    </a>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                {% endif %}
+
+            </table>
+        </div>
+
+        {% comment %} Form for creating new justifications {% endcomment %}
+        <div class="medium-6 column">
+            {% crispy form %}
+        </div>
+
+    </div>
+
+{% endblock %}

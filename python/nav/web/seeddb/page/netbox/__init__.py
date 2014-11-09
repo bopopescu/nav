@@ -1,0 +1,94 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2011 UNINETT AS
+#
+# This file is part of Network Administration Visualized (NAV).
+#
+# NAV is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License version 2 as published by the Free
+# Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.  You should have received a copy of the GNU General Public License
+# along with NAV. If not, see <http://www.gnu.org/licenses/>.
+#
+"""Controllers for the netbox part of seedDB"""
+from nav.models.manage import Category, Room, Organization, Netbox
+from nav.bulkparse import NetboxBulkParser
+from nav.bulkimport import NetboxImporter
+
+from nav.web.seeddb import SeeddbInfo, reverse_lazy
+from nav.web.seeddb.constants import SEEDDB_EDITABLE_MODELS
+from nav.web.seeddb.page import view_switcher
+from nav.web.seeddb.utils.list import render_list
+from nav.web.seeddb.utils.edit import render_edit
+from nav.web.seeddb.utils.delete import render_delete
+from nav.web.seeddb.utils.move import move
+from nav.web.seeddb.utils.bulk import render_bulkimport
+from .forms import NetboxFilterForm, NetboxMoveForm
+
+
+class NetboxInfo(SeeddbInfo):
+    """Variable container"""
+    active = {'netbox': True}
+    caption = 'IP Devices'
+    tab_template = 'seeddb/tabs_generic.html'
+    _title = 'IP Devices'
+    _navpath = [('IP Devices', reverse_lazy('seeddb-netbox'))]
+    delete_url = reverse_lazy('seeddb-netbox')
+    back_url = reverse_lazy('seeddb-netbox')
+    add_url = reverse_lazy('seeddb-netbox-edit')
+    bulk_url = reverse_lazy('seeddb-netbox-bulk')
+
+
+def netbox(request):
+    """Controller for landing page for netboxes"""
+    return view_switcher(request, list_view=netbox_list,
+                         move_view=netbox_move, delete_view=netbox_delete)
+
+
+def netbox_list(request):
+    """Controller for showing all netboxes"""
+    info = NetboxInfo()
+    query = Netbox.objects.all()
+    filter_form = NetboxFilterForm(request.GET)
+    value_list = (
+        'sysname', 'room', 'ip', 'category', 'organization', 'read_only',
+        'read_write', 'snmp_version', 'type__name', 'device__serial')
+    return render_list(request, query, value_list, 'seeddb-netbox-edit',
+                       edit_url_attr='pk',
+                       filter_form=filter_form,
+                       extra_context=info.template_context,
+                       censor_list=create_index_list(
+                           value_list,
+                           ['read_only', 'read_write']))
+
+
+def create_index_list(value_list, values_to_index):
+    """Create a zero-based index list for the listvalues in value_list"""
+    return [value_list.index(x) for x in values_to_index]
+
+
+def netbox_delete(request):
+    """Controller for handling a request for deleting a netbox"""
+    info = NetboxInfo()
+    return render_delete(request, Netbox, 'seeddb-netbox',
+                         whitelist=SEEDDB_EDITABLE_MODELS,
+                         extra_context=info.template_context)
+
+
+def netbox_move(request):
+    """Controller for handling a move request"""
+    info = NetboxInfo()
+    return move(request, Netbox, NetboxMoveForm, 'seeddb-netbox',
+                title_attr='sysname', extra_context=info.template_context)
+
+
+def netbox_bulk(request):
+    """Controller for bulk importing netboxes"""
+    info = NetboxInfo()
+    return render_bulkimport(request, NetboxBulkParser, NetboxImporter,
+                             'seeddb-netbox',
+                             extra_context=info.template_context)

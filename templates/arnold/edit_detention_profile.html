@@ -1,0 +1,24 @@
+{% extends 'arnold/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  {% include 'arnold/back.html' %}
+
+  <h4>Predefined Detention</h4>
+
+  <div class="row">
+    <div class="large-8 column">
+      <div class="panel white">
+
+        {% crispy form %}
+
+        {% if profile %}
+          <p>Last changed {{ profile.last_edited|date:'DATETIME_FORMAT' }}
+            by {{ profile.edited_by }}</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

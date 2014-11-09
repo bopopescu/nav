@@ -1,0 +1,20 @@
+{% extends 'arnold/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  {% include 'arnold/back.html' %}
+
+  <h4>Manual detention</h4>
+
+  {% if error %}
+    <div class="alert-box alert">{{ error }}</div>
+  {% endif %}
+
+  <div class="row">
+    <div class="medium-4 column">
+      {% crispy form %}
+    </div>
+  </div>
+
+{% endblock %}

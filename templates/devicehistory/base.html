@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_additional_head %}
+    <script>require(["src/devicehistory"]);</script>
+    <link rel="stylesheet"  href="{{ STATIC_URL }}css/nav/devicehistory.css" />
+{% endblock %}
+
+{% block base_content %}
+
+  {% with tool=current_user_data.tools|get_tool:'Device History' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+
+<div class="tabs">
+    {% block tabs %}
+    <ul>
+        <li class="{{ active.device|yesno:"tabactive," }}">
+            <a href="{% url devicehistory-search %}">Device History</a>
+        </li>
+        <li class="{{ active.error|yesno:"tabactive," }}">
+            <a href="{% url devicehistory-registererror %}">Register Error
+            Event</a>
+        </li>
+        <li class="{{ active.module|yesno:"tabactive," }}">
+            <a href="{% url devicehistory-module %}">Delete Module</a>
+        </li>
+    </ul>
+    {% endblock %}
+
+    <div class="tabcontent">
+        {% if current_user_data.messages %}
+            <div class="alert-box">
+                <ul class="messages no-bullet">
+                    {% for m in current_user_data.messages %}
+                        <li class="{{ m.type }}">{{ m.message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% block tabcontent %}
+        {% endblock %}
+
+    </div>
+
+</div>
+
+{% endblock %}

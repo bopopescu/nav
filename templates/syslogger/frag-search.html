@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+<div id="syslog_search">
+    <div id="domain_strip" class="hidden">{{ domain_strip }}</div>
+    <div class="row">
+        <div class="large-3 column">
+
+            {% if form %}
+            <form id="syslog_search_form" action="{{ form_target }}" method="get">
+                {% crispy form %}
+                <button name="send" data-target="{{ form_target }}" class="button">Search</button>
+            </form>
+
+            
+            {% endif %}
+        </div>
+        <div class="large-9 column">
+            <div id="syslog_loader"></div>
+            {% include "syslogger/frag-results.html" %}
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('.select2').select2();
+    });
+</script>

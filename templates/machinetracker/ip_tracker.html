@@ -1,0 +1,78 @@
+
+<table id="tracker-table" class="listtable tablesorter">
+    <caption>
+        IP search results
+        {% if not disable_ip_context %}
+            &ndash;
+            <span class="subtitle">From {{ subnet_start }} to {{ subnet_end }}</span>
+        {% endif %}
+        <span class="subtitle right">
+            {{ ip_tracker_count }} hit{{ ip_tracker_count|pluralize }}
+        </span>
+    </caption>
+
+    <thead>
+        <tr>
+            {% if form_data.dns %}
+            <th>DNS</th>
+            {% endif %}
+            {% if form_data.netbios %}
+            <th>Netbios</th>
+            {% endif %}
+            <th>IP</th>
+            <th></th>
+            <th>MAC</th>
+            <th>Start time</th>
+            <th>End time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for key, result in ip_tracker.items %}
+        {% for row in result %}
+        {% if row.fishy %}<tr class="fishy-item">{% else %}<tr>{% endif %}
+            {% if form_data.dns %}
+            <td>{{ row.dns_lookup }}</td>
+            {% endif %}
+
+            {% if form_data.netbios %}
+            <td>{{ row.netbiosname|default_if_none:'' }}</td>
+            {% endif %}
+
+            <td>
+                {% with form_data.dns|yesno:"True," as dns %}
+                <span style="display:none;">{{ row.ip_int_value }}</span> <a href="{% url machinetracker-ip_short_search row.ip form_data.days dns %}" title="Search for this IP address">
+                    {{ row.ip }}</a>
+            </td>
+            <td>
+                <a href="{% url ipdevinfo-details-by-addr row.ip %}" title="Lookup this IP in IP Device Info">
+                <img src="{{ STATIC_URL }}images/arpcam/ipinfolink.png" alt="IP Info search" /></a>
+            </td>
+            <td>
+                {% if row.mac %}
+                <a href="{% url machinetracker-mac_search row.mac form_data.days dns %}" title="Search for this MAC address">
+                {{ row.mac }}</a>
+                {% endif %}
+                {% endwith %}
+            </td>
+            <td>{{ row.start_time|date:"Y-m-d H:i:s" }}</td>
+            <td>
+                {% if row.still_active %}
+                    {{ row.still_active }}
+                    {% if row.fishy %}{% include "machinetracker/fishy.html" %}{% endif %}
+                {% else %}
+                    {{ row.end_time|date:"Y-m-d H:i:s" }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <th colspan="{{ colspan }}">{{ ip_tracker_count }}
+            hit{{ ip_tracker_count|pluralize }}</th>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,23 @@
+{% extends "devicehistory/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block tabcontent %}
+    <p class="panel">
+        Select and view device history for a location, room, box or module. Use
+        quicksearch to search for a (partial) serialnumber, hostname, IP or
+        room.
+    </p>
+
+    <form action="{% url devicehistory-search %}" method="get">
+        <div class="row">
+            <div class="large-8 column">
+                {% crispy form %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-8 column">
+                {{ quickselect|safe }}
+            </div>
+        </div>
+    </form>
+{% endblock %}

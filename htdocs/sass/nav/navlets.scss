@@ -1,0 +1,101 @@
+@import "../navsettings";
+
+#navlets .highlight {
+    background-color: #d6d6d6;
+    border: 1px solid #aaaaaa;
+    margin-bottom: 1em;
+}
+
+/* Is a column is empty, make sure it has some size to be visible */
+.navletColumn {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.navlet {
+    background-color: #ffffff;
+    border: 1px solid #DDDDDD;
+    margin-bottom: 1em;
+    padding: 0.5em 1em 1em 1.2em;
+    position: relative;
+    min-height: 100px;
+    &.outline {
+        border: 1px dashed black;
+    }
+    &.colorblock-navlet {
+        background-color: #1570a6;
+        color: #fff;
+        .subheader {
+            color: #fff;
+        }
+        a {
+            color: #fff;
+        }
+    }
+    .navlet-header {
+        margin-bottom: 1em;
+    }
+    .navlet-action-group {
+        float: right;
+        i {
+            color: darkgrey;
+            margin-left: 0.5em;
+            &:hover {
+                color: black;
+            }
+        }
+    }
+    .subheader {
+        font-size: 1.1em;
+        position: relative;
+        i {
+            font-size: 0.8em;
+            margin-left: 0.3em;
+        }
+    }
+}
+
+.navlet .panel {
+    font-size: 0.9em;
+}
+
+
+/* Styling for individual navlets */
+
+.MessagesNavlet {
+    .panel {
+        .message-card-footer {
+            font-size: 0.8em;
+            color: #999;
+            overflow: hidden;
+            .message-card-publish {
+                float: left;
+            }
+            .message-card-tasks {
+                float: right;
+            }
+        }
+    }
+}
+
+.WatchDogWidget {
+    .watchdog-tests {
+        ul {
+            max-height: 200px;
+            overflow: auto;
+        }
+        li {
+            padding: 0.2em;
+            .label.alert {
+                cursor: pointer;
+            }
+            &:nth-child(odd) {
+                background-color: #F9F9F9;
+            }
+        }
+        .label {
+            line-height: 1.4em;
+            width: 60px;
+        }
+    }
+}

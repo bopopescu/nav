@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+
+{% if time_period %}
+    <h4>Edit time period</h4>
+{% else %}
+    <h4>Add new time period</h4>
+{% endif %}
+
+{% crispy time_period_form %}
+

@@ -1,0 +1,332 @@
+/* Custom global styles */
+@import '../navsettings';
+
+/* NAV logo top-bar style */
+.top-bar {
+    .name h1 {
+        a {
+            padding: 0;
+            .nav-logo {
+                position: relative;
+                height: 28px;
+                top: -2px;
+            }
+        }
+    }
+}
+
+@media #{$medium-up} {
+    #navbar-search-form {
+        width: 400px;
+    }
+}
+
+/* MEGADROP MEGADROP MEGADROP MEGADROP MEGADROP  */
+#megadroptoggler {
+    i {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 16px;
+    }
+}
+
+#megadrop {
+    background-color: white;
+    border-bottom: 5px solid #027BBB;
+    position: absolute;
+    z-index: 10000;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    ul {
+        margin-top: 1em;
+        li {
+            margin: 1em 0;
+            a { color: black; }
+        }
+    }
+    img {
+        height: 24px;
+        width: 24px;
+    }
+    h5 { margin-top: 1.3em; }
+}
+
+/* Dashboard control center */
+#widgets-action-add {
+    background-color: $topbar-bg-color;
+    box-shadow: 0px 3px 5px grey;  // Christine allowed this =)
+    padding: 0.5rem 0.6rem 0.4rem 0.7rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    i { color: white; }
+    &:hover {
+        background-color: $primary-color;
+        cursor: pointer;
+    }
+}
+
+
+/* Padding for all pages */
+
+.top-bar, #megadrop {
+    padding-left: $global-padding;
+    padding-right: $global-padding;
+}
+
+.navbody, .breadcrumbs {
+    padding-left: $body-padding;
+    padding-right: $body-padding;
+}
+
+@media #{$small-only} {
+    footer, .top-bar, #megadrop {
+        padding-left: $global-padding-small;
+        padding-right: $global-padding-small;
+    }
+
+    .navbody, .breadcrumbs {
+        padding-left: $body-padding-small;
+        padding-right: $body-padding-small;
+    }
+}
+
+.navbody {
+    margin-bottom: 1em;
+}
+
+.breadcrumbs {
+    padding-top: 0.5625em;
+    padding-bottom: 0.5625em;
+}
+
+/* Background-color for main display elements  */
+.tabs .tabcontent, .ui-tabs .ui-tabs-panel, .accordion .tabactive {
+    background-color: #fff;
+}
+
+fieldset legend {
+    background-color: transparent;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+.break-word { word-break: break-all; }
+.float-clear { clear: both; }
+.hidden {display: none; }
+.notvisible {visibility: hidden; }
+
+
+/* Sudoer bar is the bar that appears when you switch users from the
+   'User Administration' page */
+.sudoer-bar {
+    background-color: #d3d7cf;
+    border-bottom: 1px solid #555753;
+    padding-left: 2em;
+    line-height: 3em;
+    form, input {
+        margin: 0;
+    }
+    img {
+        vertical-align: middle;
+    }
+}
+
+/* Custom form styles */
+
+table form, table input[type="text"], table input[type="password"],
+table input[type="date"], table input[type="datetime"], table input[type="checkbox"],
+table input[type="datetime-local"], table input[type="month"],
+table input[type="week"], table input[type="email"],
+table input[type="number"], table input[type="search"], table select,
+table input[type="tel"], table input[type="time"], table input[type="url"],
+table textarea, form.custom table .custom.dropdown {
+    margin: 0;
+}
+
+table .button {
+    margin: 0;
+}
+
+fieldset.secondary {
+    background-color: #f2f2f2;
+    legend {
+        background-color: transparent;
+    }
+}
+
+/* Styles regarding use of OpenLayers maps */
+.mapwrapper {
+    margin: 1em 0;
+    img {
+        max-width: none; /* Openlayers maps need this to override a foundation style to display properly */
+    }
+}
+
+.smallmap {
+    height: 400px;
+    width: 600px;
+}
+
+.navletmap {
+    height: 400px;
+    width: auto;
+    position:relative;
+}
+
+.bigmap {
+    height: 600px;
+}
+
+
+/* jquery ui tabs */
+
+ul.ui-tabs-nav {
+    font-size: 0.9em;
+}
+
+
+/* List styles */
+
+ul.errorlist {
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+ul.clean, ol.clean, dl.clean {
+    margin: 0;
+    list-style-type: none;
+}
+
+li.list-header {
+    background: #567899;
+    color: white;
+    font-weight: bold;
+    padding: 0.3em 0.5em;
+    text-align: left;
+}
+
+/* Alert-box style */
+
+.alert-box ul, .error ul {
+    margin-bottom: 0;
+}
+
+
+/* highlighting */
+
+.highlight {
+	background: #FFF7BC;
+}
+.highlight .highlight {
+	background: #FEE391;
+}
+.highlight .highlight .highlight {
+	background: #FEC44F;
+}
+
+.logo-text {
+    color:white;
+    font-size:28px;
+    position:relative;
+    top:3px;
+}
+
+
+/* Add margin to font awesome in buttons */
+button, .button, a {
+    > i {
+        margin-left: 0.375em;
+    }
+}
+
+/* Form styles */
+
+form.inline-form {
+    display: inline-block;
+    > * {
+        display: inline-block;
+        width: auto;
+    }
+    > .custom.dropdown {
+        display: inline-block;
+        width: auto;
+    }
+    input[type=submit] {
+        font-size: 0.875em;
+        padding-top: 0;
+        padding-bottom: 0;
+        text-align: center;
+        line-height: 2.125em;
+        height: 2.3125em;
+    }
+}
+
+form label .fa {
+    line-height: 1.5em;
+}
+
+
+/* This will align the label from crispy forms to the right of the checkbox */
+.checkboxinput + label {
+    display: inline-block;
+}
+
+/* This will try to center the checkbox vertically when adjacent to input fields */
+.checkboxinput.input-align {
+    margin: 1.5em 0.2em 1.5em 0.2em;
+}
+
+/* Limit the vertical size of an element and display a scroll-bar instead */
+.limit-size {
+    max-height: 200px;
+    overflow: auto;
+}
+
+/* Reveal modal should always be as high as possible */
+//.reveal-modal {
+//    top: 0px;
+//}
+/* Alert icon */
+.deleteicon {
+    color: #d2322d;
+}
+
+
+/* NAV header */
+.nav-header {
+    h2 {
+        margin-bottom: 0;
+    }
+    h5 {
+        position: relative;
+        font-size: 1em;
+        top: -10px;
+    }
+}
+
+/* Debug */
+#debug {
+    background-color: #ffffff;
+}
+
+/* Foundation does strange things with select multiple */
+select[multiple] {
+    background: #FFFFFF;
+    height: auto;
+}
+
+/* Style graphtite graph elements */
+.graphitegraph {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    button {
+        margin-bottom: 0;
+    }
+}
+
+.graph-toggler {
+    cursor: pointer;
+}

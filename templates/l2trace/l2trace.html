@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load tools %}
+
+
+{% block base_content %}
+  {% with tool=current_user_data.tools|get_tool:'Layer 2 Traceroute' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+  <div id="l2trace">
+
+    <div class="row">
+
+      <div class="column medium-6">
+        {% crispy form %}
+      </div>
+
+      <div class="column medium-6">
+        <i class="fa fa-info-circle has-tip" data-tooltip title="
+          &lt;ul style=&quot;list-style-type:none;&quot;&gt;
+            &lt;li&gt;Enter a hostname or IP address and trace up to its router.&lt;/li&gt;
+            &lt;li&gt;Optionally enter a destination hostname or IP address and trace between the two.&lt;/li&gt;
+            &lt;li&gt;Press the trace button to start.&lt;/li&gt;
+          &lt;/ul&gt;
+        "></i>
+      </div>
+
+    </div>
+
+    <div id="results">
+      {% if l2tracer %}
+
+        <table class="listtable">
+          <caption>Layer 2 Trace Results</caption>
+
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Level</th>
+            <th>Vlan</th>
+            <th>IP</th>
+            <th>Interface In</th>
+            <th>Sysname</th>
+            <th>Interface Out</th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          {% for row in l2tracer.make_rows %}
+
+            <tr>
+              <td>{{ row.idx }}</td>
+              <td>{{ row.level }}</td>
+
+              <td>
+                {% ifequal row.vlan "trunk" %}
+                  {{ row.vlan }}
+                {% else %}
+                  <a href="/report/prefix?vlan={{ row.vlan }}" title="Vlan report">{{ row.vlan }}</a>
+                {% endifequal %}
+              </td>
+
+              {% if row.hostOk %}
+                <td><a href="/ipdevinfo/ip={{ row.ipaddr }}/" title="IP Device Info">{{ row.ipaddr }}</a></td>
+              {% else %}
+                <td>{{ row.ipaddr }}</td>
+              {% endif %}
+
+              {% if row.netboxid %}
+                <td><a href="/report/swport?netboxid={{ row.netboxid }}" title="Switch ports">{{ row.if_in|default:"" }}</a></td>
+                <td><a href="/ipdevinfo/{{ row.sysname }}/" title="IP Device Info">{{ row.sysname|default:"" }}</a></td>
+                <td><a href="/report/swport?netboxid={{ row.netboxid }}" title="Switch ports">{{ row.if_out|default:"" }}</a></td>
+              {% else %}
+                <td>{{ row.if_in|default:"" }}</td>
+                <td>{{ row.sysname|default:"" }}</td>
+                <td>{{ row.if_out|default:"" }}</td>
+              {% endif %}
+
+            </tr>
+
+          {% empty %}
+            <tr>
+              <td colspan="7">Your search did not return any results.</td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      {% endif %}
+    </div> {# results #}
+
+  </div> {# l2trace #}
+{% endblock base_content %}

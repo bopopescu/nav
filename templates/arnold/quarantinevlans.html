@@ -1,0 +1,46 @@
+{% extends "arnold/tabs.html" %}
+{% load crispy_forms_tags %}
+
+{% block tabcontent %}
+
+    <div class="row">
+
+        <div class="medium-6 column">
+            {% comment %} List all existing quarantine vlans{% endcomment %}
+            <table class="listtable expand">
+                <caption>Current quarantine vlans</caption>
+
+                <thead>
+                <tr>
+                    <th>Vlan</th>
+                    <th>Description</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+
+                {% if qvlans %}
+                    <tbody>
+                    {% for qvlan in qvlans %}
+                        <tr>
+                            <td>{{ qvlan.vlan }}</td>
+                            <td>{{ qvlan.description }}</td>
+                            <td>
+                                <a href="{% url arnold-quarantinevlans-edit qvlan.id %}" class="button tiny secondary">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                {% endif %}
+
+            </table>
+        </div>
+
+        {% comment %} Display form for creating a new quarantine vlan {% endcomment %}
+        <div class="medium-6 column">
+            {% crispy form %}
+        </div>
+
+    </div>
+{% endblock %}

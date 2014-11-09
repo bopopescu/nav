@@ -1,0 +1,83 @@
+/* Styling for using datatables plugin on tables */
+
+/* Sorting indicators */
+
+@import '../navsettings';
+
+@mixin common_header_styles() {
+    display: inline-block;
+    padding: 0.7em;
+}
+
+.dataTables_wrapper {
+    background-color: #eeeeee;
+    border-radius: 3px;
+    border: 1px solid #dddddd;
+    select {
+        width: auto;
+    }
+    label {
+        display: inline;
+    }
+    &:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+    .dataTable {
+        th {
+            padding-right: 1.4em;
+            &.sorting_asc {
+                background: url('#{$image-path-partials}/datatables/sort_asc.png') no-repeat right center #EEEEEE;
+            }
+            &.sorting_desc {
+                background: url('#{$image-path-partials}/datatables/sort_desc.png') no-repeat right center #EEEEEE;
+            }
+            &.sorting {
+                background: url('#{$image-path-partials}/datatables/sort_both.png') no-repeat right center #EEEEEE;
+            }
+        }
+    }
+    .dataTables_filter {
+        padding: 0 0.7em;
+    }
+    .dataTables_length {
+        @include common_header_styles;
+    }
+    .dataTables_info {
+        @include common_header_styles;
+        font-size: 0.9em;
+        line-height: 1.6em;
+        clear: right;
+    }
+    .dataTables_paginate {
+        @include common_header_styles;
+        float: right;
+        a {
+            &.paginate_button,
+            &.paginate_active {
+                margin-left: 2px;
+                cursor: pointer;
+            }
+            &.paginate_button_disabled {
+                cursor: default;
+            }
+        }
+        .button {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* Special styles for overriding global styles */
+
+.dataTables_scroll table, .DTFC_ScrollWrapper table {
+    border: 0;
+    margin-bottom: 0;
+    th {
+        box-sizing: content-box; /*Override when using scrolling in datatables*/
+    }
+}

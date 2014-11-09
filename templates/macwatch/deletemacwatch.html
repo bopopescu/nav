@@ -1,0 +1,24 @@
+{% extends "macwatch/base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="large-4 column">
+            <p class="alert-box secondary">
+                Remove {{ macwatch.mac }} ({{ macwatch.description }} added
+                by {{ macwatch.userid.name }}) from watch?
+            </p>
+
+            <form action="." method="post">
+                <input type="submit" name="submit" class="button small alert"
+                       value="Yes">
+                <input type="submit" name="submit"
+                       class="button small secondary"
+                       value="No">
+            </form>
+
+        </div>
+    </div>
+
+
+{% endblock %}

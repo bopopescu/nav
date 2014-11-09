@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_additional_head %}
+    <script>require(["src/maintenance"]);</script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/nav/color.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/nav/jquery-ui-1.8.21.custom.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/nav/timepicker.css">
+{% endblock %}
+
+{% block base_content %}
+
+  {% if current_user_data.messages %}
+      {% for m in current_user_data.messages %}
+          <div class="alert-box {{ m.type }}">{{ m.message }}</div>
+      {% endfor %}
+  {% endif %}
+
+  {% with tool=current_user_data.tools|get_tool:'Maintenance Tasks' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+
+  {% block content %}
+  {% endblock %}
+
+{% endblock %}
+

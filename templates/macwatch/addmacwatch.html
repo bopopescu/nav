@@ -1,0 +1,13 @@
+{% extends "macwatch/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="large-4 column">
+            <a href="{% url listwatch %}" class="button small secondary">Back</a>
+            {% crispy form %}
+        </div>
+    </div>
+
+{% endblock %}

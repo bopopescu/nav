@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_additional_head %}
+    <link href="{{ STATIC_URL }}css/nav/seeddb.css" rel="stylesheet" />
+    <script>require(["src/seeddb"]);</script>
+    {% block additional_seeddb_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block base_content %}
+
+  {% with tool=current_user_data.tools|get_tool:'Seed Database' %}
+    {% include 'nav_header.html' %}
+  {% endwith %}
+
+  {% if current_user_data.messages %}
+    {% for m in current_user_data.messages %}
+      <div class="alert-box {{ m.type }}">
+      {{ m.message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+
+<div class="tabs tabs-vertical">
+    <ul>
+        <li class="{{ active.index|yesno:"tabactive," }}">
+            <a href="{% url seeddb-index %}">Seed DB</a>
+        </li>
+        <li class="{{ active.netbox|yesno:"tabactive," }}">
+            <a href="{% url seeddb-netbox %}">IP device</a>
+        </li>
+        <li class="{{ active.service|yesno:"tabactive," }}">
+            <a href="{% url seeddb-service %}">Service</a>
+        </li>
+        <li class="{{ active.room|yesno:"tabactive," }}">
+            <a href="{% url seeddb-room %}">Room</a>
+        </li>
+        <li class="{{ active.location|yesno:"tabactive," }}">
+            <a href="{% url seeddb-location %}">Location</a>
+        </li>
+        <li class="{{ active.organization|yesno:"tabactive," }}">
+            <a href="{% url seeddb-organization %}">Organization</a>
+        </li>
+        <li class="{{ active.usage|yesno:"tabactive," }}">
+            <a href="{% url seeddb-usage %}">Usage</a>
+        </li>
+        <li class="{{ active.type|yesno:"tabactive," }}">
+            <a href="{% url seeddb-type %}">Type</a>
+        </li>
+        <li class="{{ active.vendor|yesno:"tabactive," }}">
+            <a href="{% url seeddb-vendor %}">Vendor</a>
+        </li>
+        <li class="{{ active.netboxgroup|yesno:"tabactive," }}">
+            <a href="{% url seeddb-netboxgroup %}">Device Group</a>
+        </li>
+        <li class="{{ active.vlan|yesno:"tabactive," }}">
+           <a href="{% url seeddb-vlan %}">Vlan</a>
+        </li>
+        <li class="{{ active.prefix|yesno:"tabactive," }}">
+            <a href="{% url seeddb-prefix %}">Prefix</a>
+        </li>
+        <li class="{{ active.cabling|yesno:"tabactive," }}">
+            <a href="{% url seeddb-cabling %}">Cabling</a>
+        </li>
+        <li class="{{ active.patch|yesno:"tabactive," }}">
+            <a href="{% url seeddb-patch %}">Patch</a>
+        </li>
+    </ul>
+
+    <div class="tabcontent">
+      <div class="row">
+        <div class="small-12 column">
+
+          {% if tab_template %}
+            <div class="row">
+              <div class="small-12 column">
+                <ul class="button-group right">
+                  {% include tab_template %}
+                </ul>
+                <h3>{% block heading %}{{ caption }}{% endblock %}</h3>
+              </div>
+            </div>
+          {% endif %}
+
+          {% block content %}
+          {% endblock %}
+
+        </div>
+      </div>
+    </div>
+
+</div>
+
+{% endblock base_content %}

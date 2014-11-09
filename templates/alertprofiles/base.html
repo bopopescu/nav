@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load tools %}
+
+{% block base_header_additional_head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/nav/alertprofiles.css" />
+<script src="{{ STATIC_URL }}js/jquery.js"></script>
+<script src="{{ STATIC_URL }}js/alertprofiles.js"></script>
+{% endblock %}
+
+{% block base_content %}
+
+{% with tool=current_user_data.tools|get_tool:'Alert Profiles' %}
+  {% include 'nav_header.html' %}
+{% endwith %}
+
+
+<div class="tabs">
+    {% block tabs %}
+    <ul>
+        <li class="{{ active.overview|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-overview %}">Account details</a>
+        </li>
+        <li class="{{ active.address|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-address %}">Alert addresses</a>
+        </li>
+        <li class="{{ active.profile|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-profile %}">Profiles</a>
+        </li>
+        <li class="{{ active.filter_groups|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-filter_groups %}">Filter groups</a>
+        </li>
+        <li class="{{ active.filters|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-filters %}">Filters</a>
+        </li>
+        <li class="{{ active.sms|yesno:"tabactive," }}">
+            <a href="{% url alertprofiles-sms %}">My SMS</a>
+        </li>
+
+        {% if request.account.is_admin %}
+            <li class="{{ active.matchfields|yesno:"tabactive," }}">
+                <a href="{% url alertprofiles-matchfields %}">Matchfields</a>
+            </li>
+            <li class="{{ active.permissions|yesno:"tabactive," }}">
+                <a href="{% url alertprofiles-permissions %}">Permissions</a>
+            </li>
+        {% endif %}
+    </ul>
+    {% endblock %}
+
+    <div class="tabcontent">
+
+      {% if current_user_data.messages %}
+        {% for m in current_user_data.messages %}
+          <div class="alert-box {{ m.type }}">{{ m.message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% block tabcontent %}
+      {% endblock %}
+
+
+{% comment %}
+        {% if subsection %}
+        <div class="tabs">
+            {% include "alertprofiles/subsection_tabs.html" %}
+
+            <div class="tabcontent">
+                {% block tabcontent %}
+                {% endblock %}
+            </div>
+        </div>
+        {% endif %}
+{% endcomment %}
+
+    </div>
+
+</div>
+
+
+{% endblock %}

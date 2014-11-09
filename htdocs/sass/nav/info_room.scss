@@ -1,0 +1,187 @@
+#netboxes .dataTables_wrapper {
+    display: inline-block;
+    margin-bottom: 1em;
+    margin-right: 3em;
+    vertical-align: top;
+}
+
+table.compact {
+    border-collapse: collapse;
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+}
+
+table.cluttered tr td {
+    background-color: #CCDDEE;
+    padding: 0.2em;
+
+}
+
+.center-content {
+    text-align: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.help {
+    cursor: help;
+}
+
+.brighten {
+    color: #777;
+}
+
+img.textbottom {
+    vertical-align: text-bottom;
+}
+
+/* Drag styles */
+.drag {
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.drag:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* Image cards */
+.imagecard {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    padding: 0.5em 1em;
+    img {
+        width: 100%;
+    }
+    .actions {
+        overflow: hidden;
+        i {
+            margin-left: 0.5em;
+            cursor: pointer;
+        }
+    }
+    .meta {
+        font-size: 0.7em;
+    }
+    .heading {
+        border-bottom: 1px solid #DDDDDD;
+        input {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+/* Prevent OpenStreetmap to show through the image clearing */
+.clearing-blackout {
+    z-index: 1010;
+}
+
+#room_map {
+    height: 300px;
+    width: auto;
+}
+
+/* Feedback when user is on the upload page */
+.user-feedback {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10000;
+    > div {
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        top: -50px;
+    }
+}
+
+
+/*
+ * Styles for everything in the environment tab
+ */
+
+.room-sensor {
+    width: 300px;
+    margin-bottom: 3em;
+    .legendwrapper {
+        margin-bottom: 0.5em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        span {
+            color: grey;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    }
+    .current {
+        text-align: center;
+        width: 300px;
+        &.counter {
+            width: 150px;
+            padding-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .counter-node {
+            background-color: steelblue;
+            color: white;
+            font-family: Arial;
+            height: 150px;
+            line-height: 9em;
+            text-align: center;
+            width: 150px;
+            .values {
+                display: inline-block;
+                line-height: normal;
+                vertical-align: middle;
+                .value {
+                    font-size: 3em;
+                }
+            }
+        }
+    }
+    .rs-graph {
+        position: relative;
+        margin-top: 1em;
+        .rs-ynode {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+        }
+        .rs-graphnode {
+            margin-left: 40px;
+            position: relative;
+        }
+    }
+}
+
+.rickshaw_graph {
+    .detail {
+        z-index: 100;
+        .date { color: #a0a0a0 }
+        .x_label { display: none }
+        .item { line-height: 1.4; padding: 0.5em }
+        .series_value { padding-right: 20px; width: 200px; white-space: pre-wrap}
+        .detail_swatch {
+            float: right;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 2px 4px 0 0
+        }
+    }
+    .x_tick .title {
+        bottom: -15px;
+        left: -19px;
+    }
+}

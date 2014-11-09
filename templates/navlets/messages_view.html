@@ -1,0 +1,35 @@
+{% extends 'navlets/base.html' %}
+
+{% block navlet-content %}
+
+  <div class="row">
+    <div class="small-12 column">
+
+      {% if current_messages %}
+
+        {% for m in current_messages %}
+          <div class="panel">
+            <h6>
+              <a href="{% url messages-view m.id %}">{{ m.title }}</a>
+            </h6>
+            <div class="message-card-content">
+              <p>{{ m.description }}</p>
+            </div>
+            <div class="message-card-footer">
+              <span class="message-card-publish">
+                {{ m.publish_start }}
+              </span>
+              <span class="message-card-tasks">
+                Tasks: {{ m.maintenance_tasks.all|length }}
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+
+      {% else %}
+        <p>No messages</p>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock navlet-content %}
