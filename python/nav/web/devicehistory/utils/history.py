@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2008-2011 UNINETT AS
 #
@@ -184,7 +185,7 @@ def describe_search_params(selection):
 
     # Special case with netboxes
     if 'netbox' not in data:
-        data['netbox'] = ["All netboxes selected."]
+        data['netbox'] = ["Все устройства"]
 
     return data
 

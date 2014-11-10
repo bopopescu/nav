@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009, 2012 UNINETT AS
 #
@@ -27,8 +28,8 @@ from nav.metrics.templates import metric_prefix_for_device
 
 from nav.models.profiles import StatusPreference, StatusPreferenceCategory
 from nav.models.profiles import StatusPreferenceOrganization
-from nav.models.event import AlertHistory, AlertType, AlertHistoryVariable
-from nav.models.manage import Netbox, Module, Category, Organization
+from nav.models.event import AlertHistory, AlertHistoryVariable
+from nav.models.manage import Netbox, Category, Organization
 from nav.models.thresholds import ThresholdRule
 
 from nav.web import servicecheckers
@@ -203,9 +204,9 @@ class NetboxSection(_Section):
     columns =  [
         'Sysname',
         'IP',
-        'Down since',
-        'Downtime',
-        'History',
+        'Начало',
+        'Продолжительность',
+        'История',
         '',
     ]
     devicehistory_type = 'a_boxDown'
@@ -278,8 +279,8 @@ class NetboxMaintenanceSection(_Section):
     columns =  [
         'Sysname',
         'IP',
-        'Down since',
-        'Downtime',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'e_maintenanceState'
@@ -363,8 +364,8 @@ class ServiceSection(_Section):
     columns = [
         'Sysname',
         'Handler',
-        'Down since',
-        'Downtime',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'e_serviceState'
@@ -543,8 +544,8 @@ class ModuleSection(_Section):
         'Sysname',
         'IP',
         'Module',
-        'Down since',
-        'Downtime',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'a_moduleDown'
@@ -611,9 +612,9 @@ class ModuleSection(_Section):
 class ThresholdSection(_Section):
     columns = [
         'Sysname',
-        'Description',
-        'Exceeded since',
-        'Time exceeded',
+        'Описание',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'a_exceededThreshold'
@@ -698,9 +699,9 @@ class LinkStateSection(_Section):
         'Sysname',
         'IP',
         'Interface',
-        'Down since',
-        'Downtime',
-        'History',
+        'Начало',
+        'Продолжительность',
+        'История',
         '',
     ]
     devicehistory_type = 'a_linkDown'
@@ -760,8 +761,8 @@ class SNMPAgentSection(_Section):
     columns =  [
         'Sysname',
         'IP',
-        'Down since',
-        'Downtime',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'a_snmpAgentDown'
@@ -825,8 +826,8 @@ class PSUSection(_Section):
         'Sysname',
         'IP',
         'PSU',
-        'Problem since',
-        'Duration',
+        'Начало',
+        'Продолжительность',
         '',
     ]
     devicehistory_type = 'a_psuNotOK'

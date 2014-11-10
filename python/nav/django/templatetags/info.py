@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Template tags used in info subsystem"""
 import time
 from django import template
@@ -19,10 +20,10 @@ def time_since(timestamp):
                'year': 'yr'}
 
     if timestamp is None:
-        return "Never"
+        return "Никогда"
 
-    if timestamp == datetime.max or timesince(timestamp) == "0 minutes":
-        return "Now"
+    if timestamp == datetime.max or timesince(timestamp) == "0 мин.":
+        return "Сейчас"
     else:
         text = timesince(timestamp)
         for key in mapping.keys():
@@ -35,16 +36,16 @@ def time_since(timestamp):
 def days_since(timestamp):
     """Convert a timestamp to human readable time using days"""
     if timestamp is None:
-        return "Never"
+        return "Никогда"
 
-    if timestamp == datetime.max or timesince(timestamp) == "0 minutes":
-        return "Now"
+    if timestamp == datetime.max or timesince(timestamp) == "0 мин.":
+        return "Сейчас"
     elif timestamp.date() == datetime.now().date():
-        return "Today"
+        return "Сегодня"
     elif timestamp.date() == datetime.now().date() - timedelta(days=1):
-        return "Yesterday"
+        return "Вчера"
     else:
-        return "%s days" % (datetime.now().date() - timestamp.date()).days
+        return "%s дн." % (datetime.now().date() - timestamp.date()).days
 
 
 @register.filter

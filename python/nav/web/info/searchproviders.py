@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2012 (SD -311000) UNINETT AS
 #
@@ -55,12 +56,12 @@ class SearchProvider(object):
 
 class RoomSearchProvider(SearchProvider):
     """Searchprovider for rooms"""
-    name = "Rooms"
+    name = "Помещения"
     headers = [
-        ('Roomid', 'id'),
-        ('Description', 'description')
+        ('Помещение', 'id'),
+        ('Описание', 'description')
     ]
-    link = 'Roomid'
+    link = 'Помещение'
 
     def fetch_results(self):
         results = Room.objects.filter(id__icontains=self.query).order_by("id")
@@ -73,7 +74,7 @@ class RoomSearchProvider(SearchProvider):
 
 class NetboxSearchProvider(SearchProvider):
     """Searchprovider for netboxes"""
-    name = "IP devices"
+    name = "Устройства"
     headers = [('Sysname', 'sysname'),
                ('IP', 'ip')]
     link = 'Sysname'
@@ -95,13 +96,13 @@ class NetboxSearchProvider(SearchProvider):
 
 class InterfaceSearchProvider(SearchProvider):
     """Searchprovider for interfaces"""
-    name = "Interfaces"
+    name = "Интерфейсы"
     headers = [
-        ('IP Device', 'netbox.sysname'),
-        ('Interface', 'ifname'),
+        ('Устройство', 'netbox.sysname'),
+        ('Интерфейс', 'ifname'),
         ('Alias', 'ifalias'),
     ]
-    link = 'Interface'
+    link = 'Интерфейс'
 
     def fetch_results(self):
         results = Interface.objects.filter(
