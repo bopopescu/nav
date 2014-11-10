@@ -16,11 +16,8 @@
 """Viev functions for the roominfo subsystem"""
 
 import logging
-import re
 import os
 import csv
-import json
-from collections import defaultdict
 from os.path import join
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -31,7 +28,7 @@ from django.template import RequestContext
 from django.contrib import messages
 
 from nav.django.utils import get_account
-from nav.models.manage import Room, Netbox
+from nav.models.manage import Room
 from nav.models.roommeta import Image, ROOMIMAGEPATH
 from nav.web.info.room.forms import SearchForm, UploadForm
 from nav.web.info.room.utils import (get_extension, create_hash,
@@ -39,7 +36,6 @@ from nav.web.info.room.utils import (get_extension, create_hash,
                                      get_next_priority, save_image,
                                      save_thumbnail)
 from nav.web.utils import create_title
-from nav.path import localstatedir
 
 
 CATEGORIES = ("GW", "GSW", "SW", "EDGE")
@@ -229,6 +225,7 @@ def update_priority(request, roomid):
 
 
 def render_netboxes(request, roomid):
+    from django.db.models import Q
     """Controller for displaying the netboxes in the tabbed view"""
     room = get_object_or_404(Room, id=roomid)
     netboxes = filter_netboxes(room).order_by("category", "sysname")
@@ -243,7 +240,7 @@ def render_netboxes(request, roomid):
     # Filter interfaces on iftype and add fast last_cam lookup
     for netbox in netboxes:
         netbox.interfaces = netbox.interface_set.filter(
-            iftype=6).order_by("ifindex").extra(select=cam_query)
+            Q(iftype=6) | Q(iftype=117)).order_by("ifindex").extra(select=cam_query)
 
     return render_to_response("info/room/netboxview.html",
                               {"netboxes": netboxes,
