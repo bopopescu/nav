@@ -30,7 +30,7 @@ define(['libs/jquery', 'libs/spin.min'], function () {
         this.lastUrlIndex = -1;
         this.urlIndex = 0;  // Index of this.urls
 
-        this.buttons = {'day': 'Day', 'week': 'Week', 'month': 'Month', 'year': 'Year'};
+        this.buttons = {'day': 'День', 'week': 'Неделя', 'month': 'Месяц', 'year': 'Год'};
         this.lastTimeFrame = '';
         this.timeframe = 'day';
         this.isOpen = false;
@@ -118,7 +118,7 @@ define(['libs/jquery', 'libs/spin.min'], function () {
         },
         appendAddGraphButton: function () {
             var self = this,
-                button = $('<button>').addClass('tiny secondary right').text('Add graph to dashboard');
+                button = $('<button>').addClass('tiny secondary right').text('Добавить на главную страницу');
             button.click(function () {
                 /* Image url is a redirect to graphite. Fetch proxy url and use that as preference for graph widget */
                 var url = self.wrapper.find('img').attr('src'),

@@ -1,10 +1,10 @@
 {% load port_info %}
 <table class="vertitable full-width">
-  <caption>Connection</caption>
+  <caption>Соединение</caption>
 
   <tr>
-    <th>Trunk</th>
-    <td>{{ port.trunk|yesno:"Yes,No,N/A" }}</td>
+    <th>Транк</th>
+    <td>{{ port.trunk|yesno:"Да,Нет,N/A" }}</td>
   </tr>
 
   <tr>
@@ -42,7 +42,7 @@
   </tr>
 
   <tr>
-    <th>To IP device</th>
+    <th>К устройству</th>
     <td>
       {% if port.to_netbox %}
         <a href="{{ port.to_netbox.get_absolute_url }}">
@@ -54,7 +54,7 @@
   </tr>
 
   <tr>
-    <th>To port</th>
+    <th>К порту</th>
     <td>
       {% if port.to_interface %}
         <a href="{{ port.to_interface.get_absolute_url }}">
@@ -84,13 +84,13 @@
     </tr>
 
     <tr>
-      <th>Last CAM record</th>
+      <th>Последний анализ CAM</th>
       <td>
         {% with port.get_last_cam_record.end_time|timesince as time_since %}
           {% if time_since %}
             {{ time_since }} ago
           {% else %}
-            Today
+            Сегодня
           {% endif %}
         {% endwith %}<br/>
       </td>

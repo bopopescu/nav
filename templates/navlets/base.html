@@ -4,13 +4,13 @@
       <ul class="navlet-action-group button-group">
         <li>
           <a href="javascript:void(0);" class="navlet-drag-button right">
-            <i class="fa fa-arrows" title="Drag to move widgets to where you want them"></i>
+            <i class="fa fa-arrows" title="Тащите куда хотите"></i>
           </a>
         </li>
 {% comment %} Leave this uncommented in case we want it back.
         <li>
           <a href="javascript:void(0);" class="navlet-reload-button right">
-            <i class="fa fa-refresh" title="Reload"></i>
+            <i class="fa fa-refresh" title="Обновить"></i>
           </a>
         </li>
 {% endcomment %}
@@ -19,7 +19,7 @@
             <a href="javascript:void(0);" class="navlet-mode-switch right"
                data-mode="{{ navlet.mode }}">
               {% if navlet.mode == 'VIEW' %}
-                <i class="fa fa-gear" title="Edit"></i>
+                <i class="fa fa-gear" title="Настроить"></i>
               {% else %}
                 <i class="fa fa-check-square-o" title="View"></i>
               {% endif %}
@@ -28,7 +28,7 @@
         {% endif %}
         <li>
           <a href="javascript:void(0);" class="navlet-remove-button right">
-            <i class="fa fa-times-circle" title="Remove"></i>
+            <i class="fa fa-times-circle" title="Удалить"></i>
           </a>
         </li>
       </ul>

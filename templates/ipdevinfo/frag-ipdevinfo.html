@@ -10,7 +10,7 @@
   <div class="medium-6 column">
     <table class="vertitable full-width">
       <caption>
-        IP Device: {{ netbox.get_short_sysname }}
+        Устройство
       </caption>
       <tbody>
       <tr>
@@ -19,11 +19,11 @@
       </tr>
 
       <tr>
-        <th>Type</th>
+        <th>Тип</th>
         <td>
           {% if netbox.type %}
             <a href="{% url report-type-type netbox.type.id %}">
-              {{ netbox.type }}</a></td>
+              {{ netbox.type.name }}</a></td>
           {% else %}
             N/A
           {% endif %}
@@ -31,7 +31,7 @@
       </tr>
 
       <tr>
-        <th>Category</th>
+        <th>Категория</th>
         <td>
           <a href="{% url report-netbox-category netbox.category.id %}">
             {{ netbox.category }}
@@ -60,21 +60,21 @@
       </tr>
 
       <tr>
-        <th>Organization</th>
+        <th>Организация</th>
         <td>
           <a href="{% url report-organization-organization netbox.organization.id|urlencode %}">
-            {{ netbox.organization }}</a></td>
+            {{ netbox.organization.id }}</a></td>
       </tr>
 
       <tr>
-        <th>Room</th>
+        <th>Помещение</th>
         <td>
           <a href="{% url room-info netbox.room.id %}">
-            {{ netbox.room }}</a></td>
+            {{ netbox.room.id }}</a></td>
       </tr>
 
       <tr>
-        <th>Serial number</th>
+        <th>Серийный номер</th>
         <td>{{ netbox.device.serial|default:"N/A" }}</td>
       </tr>
 
@@ -139,25 +139,25 @@
       </tr>
 
       <tr>
-        <th>Modules</th>
+        <th>Модули</th>
         <td><a href="{% url report-modules-netbox netbox.id %}">
           {{ netbox.module_set.count }}</a></td>
       </tr>
 
       <tr>
-        <th>Interfaces</th>
+        <th>Интерфейсы</th>
         <td><a href="{% url report-interfaces-netbox netbox.id %}">
           {{ netbox.interface_set.count }}</a></td>
       </tr>
 
       <tr>
-        <th>Switch ports</th>
+        <th>Порты свитча</th>
         <td><a href="{% url report-swport-netbox netbox.id %}">
           {{ netbox.get_swports.count }}</a></td>
       </tr>
 
       <tr>
-        <th>Router ports</th>
+        <th>Порты роутера</th>
         <td><a href="{% url report-gwport-netbox netbox.id %}">
           {{ netbox.get_gwports.count }}</a></td>
       </tr>
@@ -171,7 +171,7 @@
   <div class="medium-6 column">
     <table class="vertitable full-width">
       <caption>
-        Status
+        Статус
       </caption>
       <tbody>
       <tr>
@@ -186,30 +186,37 @@
 
       {% with netbox_availability as stats %}
         <tr>
-          <th>Availability</th>
+          <th>Доступность</th>
           <td>
             {% if stats %}
               {% with stats.availability as a %}
-                {% if a.day %}
-                  {{ a.day|floatformat:2 }}%
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last day,
+                <span title ="День">
+                  {% if a.day %}
+                    {{ a.day|floatformat:2 }}%
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
 
-                {% if a.week %}
-                  {{ a.week|floatformat:2 }}%
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last week,
+                /
 
-                {% if a.month %}
-                  {{ a.month|floatformat:2 }}%
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last month
+                <span title ="Неделя">
+                  {% if a.week %}
+                    {{ a.week|floatformat:2 }}%
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
+
+                /
+
+                <span title ="Месяц">
+                  {% if a.month %}
+                    {{ a.month|floatformat:2 }}%
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
               {% endwith %}
             {% elif graphite_error %}
                 <span class="label alert">Graphite unreachable</span>
@@ -220,30 +227,37 @@
         </tr>
 
         <tr>
-          <th>Response time</th>
+          <th>Время ответа</th>
           <td>
             {% if stats %}
               {% with stats.response_time as rt %}
-                {% if rt.day %}
-                  {{ rt.day|floatformat:3 }}s
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last day,
+                <span title ="День">
+                  {% if rt.day %}
+                    {{ rt.day|floatformat:3 }}s
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
 
-                {% if rt.week %}
-                  {{ rt.week|floatformat:3 }}s
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last week,
+                /
 
-                {% if rt.month %}
-                  {{ rt.month|floatformat:3 }}s
-                {% else %}
-                  (N/A)
-                {% endif %}
-                last month
+                <span title ="Неделя">
+                  {% if rt.week %}
+                    {{ rt.week|floatformat:3 }}s
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
+
+                /
+
+                <span title ="Месяц">
+                  {% if rt.month %}
+                    {{ rt.month|floatformat:3 }}s
+                  {% else %}
+                    (N/A)
+                  {% endif %}
+                </span>
               {% endwith %}
             {% elif graphite_error %}
                 <span class="label alert">Graphite unreachable</span>
@@ -255,7 +269,7 @@
       {% endwith %}
 
       <tr>
-        <th>First discovered</th>
+        <th>Первое обследование</th>
         <td>{{ netbox.discovered|date|default:"N/A" }}
           {{ netbox.discovered|time }}</td>
       </tr>
@@ -266,13 +280,13 @@
     {% with netbox.get_last_jobs as jobs %}
     {% if jobs %}
       <table class="listtable full-width">
-        <caption>Jobs</caption>
+        <caption>Задачи</caption>
         <thead>
         <tr>
-          <th>Name</th>
-          <th>End time</th>
-          <th>Duration</th>
-          <th class="cell-center">Status</th>
+          <th>Название</th>
+          <th>Завершение</th>
+          <th>Длительность</th>
+          <th class="cell-center">Статус</th>
         </tr>
         </thead>
 

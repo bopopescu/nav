@@ -2,33 +2,33 @@
 
 {% block base_content %}
 
-    <h4>Room view for {{ room.id }}</h4>
+    <h4>{{ room.id }}</h4>
 
     <ul class="button-group">
         <li>
             <a href="{% url seeddb-room-edit room.id %}" class="button secondary small">
-                Edit room
+                Редактировать
                 <i class="fa fa-edit"></i>
             </a>
         </li>
 
         <li>
             <a href="{% url room-info-upload room.id %}" class="button secondary small">
-                Edit images
+                Изменить фото
                 <i class="fa fa-camera"></i>
             </a>
         </li>
 
         <li>
             <a href="{% url maintenance-new-room room.id %}" class="button secondary small">
-                Schedule Maintenance
+                Запланировать обслуживание
                 <i class="fa fa-wrench"></i>
             </a>
         </li>
 
         <li>
             <a href="{% url devicehistory-view-room room.id %}" class="button secondary small">
-                View room history
+                Посмотреть историю
                 <i class="fa fa-clock-o"></i>
             </a>
         </li>
@@ -37,10 +37,10 @@
 
     <div id="infotabs" class="ui-helper-hidden">
         <ul>
-            <li><a href="#roominfo">Room info</a></li>
-            <li><a href="{% url room-info-deviceinfo room.id %}" title="deviceinfo">Device info <span class="tab-spinner">&nbsp;</span></a></li>
-            <li><a href="{% url room-info-netboxes room.id %}" title="netboxinterfaces">Netbox interfaces <span class="tab-spinner">&nbsp;</span></a></li>
-            <li><a href="{% url room-info-sensors room.id %}" title="sensors">Environment sensors <span class="tab-spinner">&nbsp;</span></a></li>
+            <li><a href="#roominfo">Инфо</a></li>
+            <li><a href="{% url room-info-deviceinfo room.id %}" title="deviceinfo">Устройства <span class="tab-spinner">&nbsp;</span></a></li>
+            <li><a href="{% url room-info-netboxes room.id %}" title="netboxinterfaces">Интерфейсы <span class="tab-spinner">&nbsp;</span></a></li>
+            <li><a href="{% url room-info-sensors room.id %}" title="sensors">Сенсоры <span class="tab-spinner">&nbsp;</span></a></li>
         </ul>
 
         <div id="roominfo">

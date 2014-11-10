@@ -12,7 +12,7 @@
   {#  Reveal Add widgets modal  #}
   {% if not current_user_data.account.is_default_account or current_user_data.sudoer %}
 
-    <div id="widgets-action-add" class="hide-for-small" title="Add widget" data-reveal data-reveal-id="navlet-list">
+    <div id="widgets-action-add" class="hide-for-small" title="Добавить виджет" data-reveal data-reveal-id="navlet-list">
       <i class="fa fa-plus"></i>
     </div>
 
@@ -31,7 +31,7 @@
                             <input type="hidden" name="navlet"
                                    value="{{ navlet.identifier }}">
                             <input type="submit"
-                                   class="button tiny" value="Add">
+                                   class="button tiny" value="Добавить">
                         </form>
                     </td>
                 </tr>

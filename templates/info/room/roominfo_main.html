@@ -4,24 +4,24 @@
 
   <div class="medium-6 column">
     <table id="roominfotable" class="vertitable full-width">
-      <caption>Roominfo</caption>
+      <caption>Инфо</caption>
       <tbody>
-      <tr>
+<!--      <tr>
         <th>Name</th>
         <td>{{ room.id }}</td>
-      </tr>
+      </tr> -->
       <tr>
-        <th>Description</th>
+        <th>Описание</th>
         <td>{{ room.description }}</td>
       </tr>
       <tr>
-        <th>Location</th>
+        <th>Здание</th>
         <td>
-          <a href="/report/location?locationid={{ room.location.id }}">{{ room.location.description }}</a>
+          <a href="/report/location?locationid={{ room.location.id }}">{{ room.location.id }}</a>
         </td>
       </tr>
       <tr>
-        <th>Position</th>
+        <th>Координаты</th>
         <td class="position" data-roomname="{{ room.id }}">
           {% if room.position %}{{ room.position|join:', ' }}{% endif %}
         </td>
@@ -37,7 +37,7 @@
 
   </div> {# End of column #}
 
-  <div class="medium-6 column">
+  <div class="medium-12 column">
     <div class="mapwrapper">
       <div id="room_map"></div>
     </div>
@@ -47,7 +47,7 @@
 
 {% if images|length > 0 %}
 
-  <h4>Images for this room</h4>
+  <h4>Фото</h4>
   <ul class="clearing-thumbs small-block-grid-2 medium-block-grid-6"
       data-clearing>
     {% for image in images %}
@@ -65,7 +65,7 @@
 {% else %}
 
   <a href="{% url room-info-upload room.id %}" class="button secondary small">
-    Add images
+    Добавить фото
     <i class="fa fa-camera"></i>
   </a>
 

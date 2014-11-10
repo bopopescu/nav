@@ -7,7 +7,7 @@
       {% url maintenance-calendar next_month.year next_month.month as next_month %}
 
       <a href="{{ previous_month }}">
-        <i class="fa fa-step-backward fa-lg" title="Previous month"></i>
+        <i class="fa fa-step-backward fa-lg" title="Предыдущий месяц"></i>
       </a>
 
       <form action="{% url maintenance-calendar %}" method="get" class="inline-form">
@@ -19,11 +19,11 @@
       <form action="{% url maintenance-calendar %}" method="get" class="inline-form">
         <input type="hidden" name="year" value="{{ curr_month.year }}"/>
         <input type="hidden" name="month" value="{{ curr_month.month }}"/>
-        <button type="submit" class="small secondary">Current month</button>
+        <button type="submit" class="small secondary">Текущий месяц</button>
       </form>
 
       <a href="{{ next_month }}">
-        <i class="fa fa-step-forward fa-lg" title="Next month"></i>
+        <i class="fa fa-step-forward fa-lg" title="Следующий месяц"></i>
       </a>
     </div>
 

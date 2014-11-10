@@ -3,31 +3,31 @@
 <ul class="small-block-grid-2 large-block-grid-3">
   <li>
     <div>
-      <h5>IP Devices</h5>
+      <h5>Устройства</h5>
       {{ num_ip_devices }}
     </div>
   </li>
-  <li>
+<!--  <li>
     <div>
       <h5>Serial numbers</h5>
       {{ num_serials }}
     </div>
-  </li>
+  </li> -->
   <li>
     <div>
-      <h5>Active IPs (v4/v6)</h5>
+      <h5>Активные IP (v4/v6)</h5>
       {{ num_active|intcomma }} ({{ num_active_ipv4|intcomma }}/{{ num_active_ipv6|intcomma }})
     </div>
   </li>
   <li>
     <div>
-      <h5>Total Arp records</h5>
+      <h5>Записи ARP</h5>
       {{ num_arp|intcomma }}
     </div>
   </li>
   <li>
     <div>
-      <h5>Total Cam records</h5>
+      <h5>Записи CAM</h5>
       {{ num_cam|intcomma }}
     </div>
   </li>

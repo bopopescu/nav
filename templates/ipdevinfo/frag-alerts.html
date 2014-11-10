@@ -8,10 +8,10 @@
 
             <thead>
             <tr>
-                <th>Event</th>
-                <th>Message</th>
-                <th>Start</th>
-                <th>End</th>
+                <th>Событие</th>
+                <th>Сообщение</th>
+                <th>Начало</th>
+                <th>Окончание</th>
                 <th>Downtime</th>
             </tr>
             </thead>
@@ -20,8 +20,8 @@
             <tr>
                 <th colspan="5">
                     {% if alert_info.is_more_alerts %}
-                        Showing {{ alert_info.alerts|length }} of
-                        {{ alert_info.count }} alerts, see
+                        Показаны {{ alert_info.alerts|length }} из
+                        {{ alert_info.count }} оповещений, see
                         <a href="{% url devicehistory-view-netbox netbox.id %}">
                             Device History</a> for all
                     {% else %}

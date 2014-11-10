@@ -64,7 +64,7 @@
                             <input id="query" type="text" name="query" maxlength="100"/>
                         </div>
                         <div class="small-4 columns">
-                            <input class="button secondary" type="submit" value="Search" />
+                            <input class="button secondary" type="submit" value="Найти" />
                         </div>
                     </div>
                 </form>
@@ -90,29 +90,29 @@
                 </ul>
             </li>
 
-            <li class="hide-for-small text-center"><a id="megadroptoggler" href="javascript:void(0);">Tools <i class="fa fa-caret-down"></i></a></li>
+            <li class="hide-for-small text-center"><a id="megadroptoggler" href="javascript:void(0);">Инструменты <i class="fa fa-caret-down"></i></a></li>
 
             {% if not current_user_data.account.is_default_account %}
                 <li class="has-dropdown">
                     <a href="javascript:void(0);">
-                        My stuff
+                        {{ current_user_data.account.login }}
                     </a>
                     <ul class="dropdown">
                         {% for link in current_user_data.my_links %}
                             <li><a href="{{ link.uri }}">{{ link.name }}</a></li>
                         {% endfor %}
-                        <li class="divider"><a href="{% url webfront-preferences %}">My account <i class="fa fa-gear"></i></a></li>
+                        <li class="divider"><a href="{% url webfront-preferences %}">Моя учетная запись <i class="fa fa-gear"></i></a></li>
                     </ul>
                 </li>
             {% endif %}
 
             {% if current_user_data.account.is_default_account %}
                 <li>
-                    <a class="navbar login button secondary" href="/index/login">Login</a>
+                    <a class="navbar login button secondary" href="/index/login">Вход</a>
                 </li>
             {% else %}
                 <li>
-                    <a class="navbar logout button secondary" href="/index/logout">Logout {{ current_user_data.account.login }}</a>
+                    <a class="navbar logout button secondary" href="/index/logout">Выход</a>
                 </li>
             {% endif %}
         </ul>
@@ -133,7 +133,7 @@
       {% comment %} split_tools are split into 3 lists of tools {% endcomment %}
       <div class="small-12 column">
 
-        <h5>NAV Tools</h5>
+        <h5>Инструменты</h5>
 
         <hr>
 
@@ -154,11 +154,11 @@
           {% endfor %}
         </div>
 
-        <div class="row">
+<!--        <div class="row">
           <div class="small-12 column">
             <p><a href="{% url webfront-toolbox %}">Go to toolbox</a></p>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -205,7 +205,7 @@
 {% endblock %}
 
 {% block base_footer %}
-  {% include 'footer.html' %}
+{# {% include 'footer.html' %} #}
 
   {% block base_debug %}
     {% if debug %}

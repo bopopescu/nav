@@ -1,16 +1,16 @@
 {% load thresholds %}
 
 <dl class="sub-nav">
-  <dt>Filter:</dt>
-  <dd class="active"><a href="javascript:void(0);" data-action="all">All</a></dd>
-  <dd><a href="javascript:void(0);" data-action="gauges">Gauges</a></dd>
-  <dd><a href="javascript:void(0);" data-action="charts">Charts</a></dd>
+  <dt>Показать:</dt>
+  <dd class="active"><a href="javascript:void(0);" data-action="all">Все</a></dd>
+  <dd><a href="javascript:void(0);" data-action="gauges">Шкалы</a></dd>
+  <dd><a href="javascript:void(0);" data-action="charts">Диаграммы</a></dd>
 </dl>
 
 {% for netbox in netboxes %}
   {% if netbox.sensor_set.count > 0 %}
     <div class="clearfix netbox-sensor-container">
-      <h3>Sensors for
+      <h3>Сенсоры устройства
         <a href="{% url ipdevinfo-details-by-name netbox.sysname %}/#!sysmetrics!metricsensors"
            title="See all sensor metrics for this IP device">
           {{ netbox.sysname }}

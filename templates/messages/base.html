@@ -15,19 +15,19 @@
     {% include 'nav_header.html' %}
   {% endwith %}
 
-  <a href="{% url messages-rss %}">Subscribe to message feed</a>
+  <a href="{% url messages-rss %}">RSS-лента сообщений</a>
 
   {% block content %}
     <div class="tabs">
       <ul>
         <li class="{{ active.active|yesno:"tabactive," }}">
-          <a href="{% url messages-active %}">Active</a>
+          <a href="{% url messages-active %}">Активные</a>
         </li>
         <li class="{{ active.scheduled|yesno:"tabactive," }}">
-          <a href="{% url messages-planned %}">Scheduled</a>
+          <a href="{% url messages-planned %}">Запланированнные</a>
         </li>
         <li class="{{ active.archive|yesno:"tabactive," }}">
-          <a href="{% url messages-historic %}">Archive</a>
+          <a href="{% url messages-historic %}">Архив</a>
         </li>
       </ul>
 

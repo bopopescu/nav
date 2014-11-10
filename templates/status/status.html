@@ -12,14 +12,6 @@
 
 {% block content %}
 
-  <p>
-    Remember to edit your preferences to display all relevant statuses
-    <a href="{% url status-preferences %}"
-       class="small button secondary">
-      Preferences
-    </a>
-  </p>
-
   {% comment %} Display all sections that have current statuses {% endcomment %}
   {% for section in sections %}
     {% if section.history %}
@@ -70,7 +62,7 @@
                 <form action="{% url maintenance-add-netbox %}" method="POST">
                   <input type="hidden" name="netboxid"
                          value="{{ row.netboxid }}"/>
-                  <input type="submit" value="Put on maintenance"
+                  <input type="submit" value="Поставить на обслуживание"
                          title="Set this device on maintenance until it is up and running again."
                          class="tiny button secondary"/>
                 </form>
@@ -106,10 +98,17 @@
     {% endif %}
   {% endfor %}
 
+    <p>
+<!--        Remember to edit your preferences to display all relevant statuses -->
+        <a href="{% url status-preferences %}"
+           class="small button secondary">
+            Настроить
+        </a>
+    </p>
 
-  {% comment %} Give access to history for other event types {% endcomment %}
+    {% comment %} Give access to history for other event types {% endcomment %}
   <h4>
-    History for events
+    История
     <i class="fa fa-info-circle" data-tooltip title="
     These sections have no active events. View the device history by clicking on them.
     "></i>

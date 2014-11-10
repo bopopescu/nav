@@ -11,19 +11,19 @@
   {% endwith %}
 
   {% if rules %}
-    <a href="{% url threshold-add %}" class="button small">Add rule</a>
+    <a href="{% url threshold-add %}" class="button small">Добавить порог</a>
 
     <table id="thresholdrules" class="listtable">
-      <caption>Existing threshold rules</caption>
+      <caption>Пороги</caption>
       <thead>
       <tr>
-        <th>Target</th>
-        <th>Threshold</th>
-        <th>Clear</th>
-        <th class="hide-for-small">Description</th>
-        <th class="hide-for-medium-down">Period</th>
-        <th class="hide-for-medium-down">Creator</th>
-        <th class="hide-for-medium-down">Last edited</th>
+        <th>Метрика</th>
+        <th>Предупредить</th>
+        <th>Очистить</th>
+        <th class="hide-for-small">Описание</th>
+        <th class="hide-for-medium-down">Период, с</th>
+        <th class="hide-for-medium-down">Создатель</th>
+        <th class="hide-for-medium-down">Последнее изменение</th>
         <th>&nbsp;</th>
       </tr>
       </thead>
@@ -31,7 +31,7 @@
       {% for rule in rules %}
         <tr>
           <td>
-            <a href="{% url threshold-edit rule.id %}">{{ rule.target }}</a>
+            <a href="{% url threshold-edit rule.id %}">{{ rule.target }}</a>{% if rule.raw %} <strong>R</strong>{% endif %}
           </td>
           <td>{{ rule.alert }}</td>
           <td>{{ rule.clear }}</td>

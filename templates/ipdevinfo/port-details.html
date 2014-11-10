@@ -10,12 +10,12 @@
         <ul class="button-group">
           <li>
             <a href="{% url machinetracker-swport port.netbox.sysname, port.ifname %}" class="button small">
-              Track MAC behind port
+              Посмотреть MAC-адреса
             </a>
           </li>
           <li>
             <a href="{% url portadmin-interface port.id %}" class="button small">
-              Configure port
+              Конфигурировать порт
             </a>
           </li>
         </ul>
@@ -45,7 +45,7 @@
 
   </div>
 
-  <h3>Activity graphs</h3>
+  <h3>Графики</h3>
   <div class="nav-metrics-container">
     <div class="graphitegraph left" data-url="{% url interface-counter-graph port.id 'Octets' %}"></div>
     <div class="graphitegraph left" data-url="{% url interface-counter-graph port.id 'UcastPkts' %}"></div>
@@ -54,7 +54,7 @@
     <div class="float-clear"></div>
   </div>
 
-  <h3>Metrics</h3>
+<!--  <h3>Метрики</h3> -->
   {% include 'ipdevinfo/port-details-metrics-frag.html' %}
 
 

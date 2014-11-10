@@ -1,13 +1,13 @@
 <table class="vertitable full-width">
   <caption>
-    Interface {{ port.ifname }}
+    Интерфейс {{ port.ifindex }}
     {% if port.module %}
       at {{ port.module.netbox.get_short_sysname }}
     {% endif %}
   </caption>
 
   <tr>
-    <th>At IP device</th>
+    <th>Устройство</th>
     <td>
       <a href="{{ port.netbox.get_absolute_url }}">
         {{ port.netbox }}
@@ -16,12 +16,12 @@
   </tr>
 
   <tr>
-    <th>Interface</th>
+    <th>Интерфейс</th>
     <td>{{ port.ifdescr }}</td>
   </tr>
 
   <tr>
-    <th>At module</th>
+    <th>Модуль</th>
     <td>
       {% if port.module %}
         <a href="{{ port.module.get_absolute_url }}">
@@ -49,7 +49,7 @@
   </tr>
 
   <tr>
-    <th>Speed</th>
+    <th>Скорость</th>
     <td>
       {{ port.speed }} Mbit
       {% if port.duplex %}

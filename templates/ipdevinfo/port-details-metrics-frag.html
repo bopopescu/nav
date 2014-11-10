@@ -3,11 +3,11 @@
 {% with port_metrics|find_rules|dictsort:"suffix" as metrics %}
   {% if metrics|length %}
     <table class="listtable full-width nav-metrics-container">
-      <caption>Counters</caption>
+      <caption>Метрики</caption>
       <thead>
       <tr>
-        <th>Metric</th>
-        <th>Threshold</th>
+        <th>Метрика</th>
+        <th>Пороги</th>
         <th>&nbsp;</th>
       </tr>
       </thead>
@@ -34,8 +34,8 @@
           </td>
           <td>
             <a href="{% url threshold-add metric.id %}"
-               title="Add a new threshold rule for this metric"
-               class="tiny button secondary">Add</a>
+               title="Добавить порог для этой метрики"
+               class="tiny button secondary">Добавить</a>
           </td>
         </tr>
         <tr>

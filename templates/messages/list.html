@@ -6,9 +6,9 @@
             <caption>{{ caption }}</caption>
             <thead>
                 <tr>
-                    <th>Published</th>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Опубликовано</th>
+                    <th>Тема</th>
+                    <th>Описание</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,10 +22,10 @@
             </tbody>
         </table>
     {% else %}
-        <p class="alert-box secondary">No messages</p>
+        <p class="alert-box secondary">Нет сообщений</p>
     {% endif %}
 
     {% if not current_user_data.account.is_default_account %}
-      <a href="{% url messages-create %}" class="button small">Create new message</a>
+      <a href="{% url messages-create %}" class="button small">Создать сообщение</a>
     {% endif %}
 {% endblock tabcontent %}

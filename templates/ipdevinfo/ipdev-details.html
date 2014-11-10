@@ -6,26 +6,26 @@
         <ul class="button-group">
             <li>
                 <a href="{% url seeddb-netbox-edit netbox.id %}" class="button small secondary">
-                    Edit IP device
+                    Редактировать
                 </a>
             </li>
 
             <li>
                 <a href="{% url maintenance-new-netbox netbox.id %}" class="button small secondary">
-                    Schedule maintenance
+                    Запланировать обслуживание
                 </a>
             </li>
 
             <li>
                 <a href="{% url devicehistory-view-netbox netbox.id %}" class="button small secondary">
-                    View device history
+                    Посмотреть историю
                 </a>
             </li>
 
             {% if netbox.get_swports.count %}
                 <li>
                     <a href="{% url portadmin-sysname netbox.sysname %}" class="button small secondary">
-                        Configure ports
+                        Конфигурировать порты
                     </a>
                 </li>
 
@@ -37,16 +37,16 @@
 
     {% if netbox %}
       <ul>
-        <li><a href="#deviceinfo">Device Info</a></li>
-        <li><a href="#neighbors">Neighbors</a></li>
-        <li><a href="#ports">Ports</a></li>
-        <li><a href="#portmetrics">Port metrics</a></li>
-        <li><a href="#sysmetrics">System metrics</a></li>
+        <li><a href="#deviceinfo">Инфо</a></li>
+        <li><a href="#neighbors">Соседи</a></li>
+        <li><a href="#ports">Порты</a></li>
+        <li><a href="#portmetrics">Метрики портов</a></li>
+        <li><a href="#sysmetrics">Системные метрики</a></li>
         <li data-mark-as-error="{{ alert_info.has_unresolved_alerts }}">
-          <a href="#alerts">Recent alerts</a>
+          <a href="#alerts">Оповещения</a>
         </li>
-        <li><a href="#powerfans">Power and fans</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="#powerfans">Питание и вентиляторы</a></li>
+        <li><a href="#services">Службы</a></li>
         <li>
           <a href="{% url ipdevinfo-hostinfo netbox.sysname %}">
             DNS<span class="tab-spinner">&nbsp;</span>

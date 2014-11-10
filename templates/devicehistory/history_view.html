@@ -19,10 +19,10 @@
 
         <div class="medium-3 columns">
             <div class="panel searchparams">
-            <h5>Search parameters</h5>
+            <h5>Параметры поиска</h5>
             {% for type, elements in search_description.items %}
-                <h6>{{ type|capfirst }}</h6>
-                <ul class="no-bullet">
+                {{ type|capfirst }}:
+                <ul>
                 {% for id in elements %}
                     <li>{{ id }}</li>
                 {% endfor %}
@@ -42,16 +42,13 @@
 
         <thead>
             <tr>
-                <th>Location</th>
-                <th>Room</th>
-                <th>Netbox</th>
+                <th>Помещение</th>
+                <th>Устройство</th>
                 {# <th>Module</th> #}
-                <th>Serial</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Event type</th>
-                <th>Alert type</th>
-                <th>Message</th>
+<!--                <th>Serial</th> -->
+                <th>Начало / окончание</th>
+                <th>Event type / Alert type</th>
+                <th>Сообщение</th>
             </tr>
         </thead>
 
@@ -66,21 +63,18 @@
         <tbody>
         {% for h in group %}
             <tr>
-                <td>{{ h.netbox.room.location.id }}</td>
                 <td>{{ h.netbox.room.id }}</td>
                 <td>{{ h.netbox.sysname }}</td>
                 {# <td>{{ h.module_name }}</td> #}
-                <td>{{ h.device.serial|default_if_none:"" }}</td>
-                <td>{{ h.start_time }}</td>
-                <td>
+<!--                <td>{{ h.device.serial|default_if_none:"" }}</td> -->
+                <td>{{ h.start_time }}<br>
                     {% if h.is_open %}
                     Unresolved
                     {% else %}
                     {{ h.end_time }}
                     {% endif %}
                 </td>
-                <td>{{ h.event_type.id }}</td>
-                <td>{{ h.alert_type.name }}</td>
+                <td>{{ h.event_type.id }}<br>{{ h.alert_type.name }}</td>
                 <td>
                 {% if h.extra_messages %}
                     <ul class="no-bullet">

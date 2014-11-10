@@ -3,54 +3,54 @@
 {% block content %}
 
 <table class="listtable seeddbtable expand">
-    <caption>IP devices and services</caption>
+    <caption>Устройства и службы</caption>
     <tbody>
         <tr>
             <td>
-                <a href="{% url seeddb-netbox %}">IP Devices</a>
+                <a href="{% url seeddb-netbox %}">Устройства</a>
             </td>
             <td class="info">
                 Input seed information on the IP devices you want to monitor.
             </td>
-            <td><a href="{% url seeddb-netbox-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-netbox-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-netbox-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-netbox-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
-                <a href="{% url seeddb-service %}">Services</a>
+                <a href="{% url seeddb-service %}">Службы</a>
             </td>
             <td class="info">
                 Set up service monitoring.
             </td>
-            <td><a href="{% url seeddb-service-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-service-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-service-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-service-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>
 
 <table class="listtable seeddbtable expand">
-    <caption>Rooms and locations</caption>
+    <caption>Здания и помещения</caption>
     <tbody>
         <tr>
             <td>
-                <a href="{% url seeddb-room %}">Rooms</a>
+                <a href="{% url seeddb-room %}">Помещения</a>
             </td>
             <td class="info">
               Register all wiring closets and server rooms that contain IP
               devices which NAV monitors.
             </td>
-            <td><a href="{% url seeddb-room-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-room-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-room-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-room-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
-                <a href="{% url seeddb-location %}">Locations</a>
+                <a href="{% url seeddb-location %}">Здания</a>
             </td>
             <td class="info">
               Rooms are organised in locations.
             </td>
-            <td><a href="{% url seeddb-location-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-location-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-location-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-location-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>
@@ -60,14 +60,14 @@
     <tbody>
         <tr>
             <td>
-                <a href="{% url seeddb-organization %}">Organizations</a>
+                <a href="{% url seeddb-organization %}">Организации</a>
             </td>
             <td class="info">
               Register all organizational units that are relevant, i.e. all
               units that have their own subnets or devices.
             </td>
-            <td><a href="{% url seeddb-organization-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-organization-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-organization-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-organization-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
@@ -76,8 +76,8 @@
             <td class="info">
               Subnet usage categories.
             </td>
-            <td><a href="{% url seeddb-usage-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-usage-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-usage-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-usage-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>
@@ -87,25 +87,25 @@
     <tbody>
         <tr>
             <td>
-                <a href="{% url seeddb-type %}">Types</a>
+                <a href="{% url seeddb-type %}">Типы оборудования</a>
             </td>
             <td class="info">
               The type registry lists all types of SNMP-enabled network
               equipment that are recognizable by NAV, identified by their
               sysObjectID.
             </td>
-            <td><a href="{% url seeddb-type-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-type-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-type-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-type-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
-                <a href="{% url seeddb-vendor %}">Vendors</a>
+                <a href="{% url seeddb-vendor %}">Вендоры</a>
             </td>
             <td class="info">
               A simple list of known device vendors in use in your network.
             </td>
-            <td><a href="{% url seeddb-vendor-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-vendor-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-vendor-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-vendor-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
@@ -114,8 +114,8 @@
             <td class="info">
               Create groups to further categorize your devices.
             </td>
-            <td><a href="{% url seeddb-netboxgroup-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-netboxgroup-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-netboxgroup-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-netboxgroup-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>
@@ -150,8 +150,8 @@
                 prefixes later are routed the prefix will automatically change
                 to the proper network type).
             </td>
-            <td><a href="{% url seeddb-prefix-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-prefix-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-prefix-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-prefix-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>
@@ -166,8 +166,8 @@
             <td class="info">
                 Document your horizontal cabling system.
             </td>
-            <td><a href="{% url seeddb-cabling-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-cabling-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-cabling-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-cabling-bulk %}">Импортировать</a></td>
         </tr>
         <tr>
             <td>
@@ -176,8 +176,8 @@
             <td class="info">
                 Register the cross connects in the wiring closets.
             </td>
-            <td><a href="{% url seeddb-patch-edit %}">Add</a></td>
-            <td><a href="{% url seeddb-patch-bulk %}">Bulk import</a></td>
+            <td><a href="{% url seeddb-patch-edit %}">Добавить</a></td>
+            <td><a href="{% url seeddb-patch-bulk %}">Импортировать</a></td>
         </tr>
     </tbody>
 </table>

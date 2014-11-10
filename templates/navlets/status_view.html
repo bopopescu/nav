@@ -5,11 +5,11 @@
         <table class="listtable expand table-hover">
 
             <caption>
-                <a href="{% url status-index %}">Status now</a>
+                <a href="{% url status-index %}">Статус сейчас</a>
                 &ndash;
                 <span class="subtitle">
-                            {{ boxes_down|length }} IP device{{ boxes_down|pluralize }} down,
-                            of these {{ num_shadow }} are in shadow
+                    устройства не работают: {{ boxes_down|length }},
+                    из них в тени: {{ num_shadow }}
                 </span>
             </caption>
 
@@ -17,7 +17,7 @@
             <tr>
                 <th>Sysname</th>
                 <th class="hide-for-medium-down">IP</th>
-                <th>Downtime</th>
+                <th>Прошло времени</th>
             </tr>
             </thead>
 
@@ -36,16 +36,16 @@
 
         {% if problems %}
           <p class="alert-box alert">
-            There are also {{ problems }} other problems.
-            <a href="{% url status-index %}">See the full list.</a>
+              Другие проблемы: {{ problems }}.
+              <a href="{% url status-index %}">Посмотреть полный список</a>
           </p>
         {% endif %}
     {% else %}
-        <p class="alert-box success">No IP-devices down</p>
+        <p class="alert-box success">Все устройства работают</p>
         {% if problems %}
           <p class="alert-box alert">
-            However there are {{ problems }} other problems.
-            <a href="{% url status-index %}">See the full list.</a>
+              Другие проблемы: {{ problems }}.
+              <a href="{% url status-index %}">Посмотреть полный список</a>
           </p>
         {% endif %}
     {% endif %}
