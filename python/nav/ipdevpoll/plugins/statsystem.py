@@ -40,10 +40,12 @@ from nav.mibs.cisco_process_mib import CiscoProcessMib
 from nav.mibs.snmpv2_mib import Snmpv2Mib
 from nav.mibs.statistics_mib import StatisticsMib
 from nav.mibs.juniper_mib import JuniperMib
+from nav.mibs.dlink_genmgmt_mib import DlinkGenmgmtMib
 
 VENDORID_CISCO = 9
 VENDORID_HP = 11
 VENDORID_JUNIPER = 2636
+VENDORID_DLINK = 171
 
 BANDWIDTH_MIBS = {
     VENDORID_CISCO: [CiscoStackMib, CiscoC2900Mib, ESSwitchMib],
@@ -53,6 +55,7 @@ CPU_MIBS = {
     VENDORID_CISCO: [CiscoProcessMib, OldCiscoCpuMib],
     VENDORID_HP: [StatisticsMib],
     VENDORID_JUNIPER: [JuniperMib],
+    VENDORID_DLINK: [DlinkGenmgmtMib],
 }
 
 MEMORY_MIBS = {

@@ -33,6 +33,7 @@ from nav.mibs.powernet_mib import PowerNetMib
 from nav.mibs.ups_mib import UpsMib
 from nav.mibs.xups_mib import XupsMib
 from nav.mibs.netping_mib import NetpingMib
+from nav.mibs.dlink_sensors_mib import DlinkSensorsMib
 
 from nav.ipdevpoll import Plugin
 from nav.ipdevpoll import shadows
@@ -52,6 +53,7 @@ VENDOR_ITWATCHDOGS = 17373
 # Comet
 VENDOR_COMET = 22626
 VENDOR_NETPING = 25728
+VENDOR_DLINK = 171
 
 
 class MIBFactory(object):
@@ -90,6 +92,8 @@ class MIBFactory(object):
                 mibs = [P8541Mib(agent)]
             elif vendor_id == VENDOR_NETPING:
                 mibs = [NetpingMib(agent)]
+            elif vendor_id == VENDOR_DLINK:
+                mibs = [DlinkSensorsMib(agent)]
         if not mibs:
             # And then we just sweep up the remains if we could not
             # find a matching vendor.
