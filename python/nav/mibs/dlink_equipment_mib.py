@@ -70,6 +70,5 @@ class DlinkEquipmentMib(mibretriever.MibRetriever):
     def get_all_sensors(self):
         temperature_sensors = yield self._get_temperature_sensors()
         fan_speed_sensors = yield self._get_fan_speed_sensors()
-        result = self._get_temperature_sensor_params(temperature_sensors)
-        result.extend(self._get_fan_speed_sensor_params(fan_speed_sensors))
+        result = self._get_temperature_sensor_params(temperature_sensors) + self._get_fan_speed_sensor_params(fan_speed_sensors)
         defer.returnValue(result)
