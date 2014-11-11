@@ -17,7 +17,7 @@
 from django.shortcuts import render
 
 from nav.models.fields import INFINITY
-from nav.models.manage import Arp, Cam, Netbox, Device
+from nav.models.manage import Arp, Cam, Netbox, Device, Interface, Sensor
 from nav.web.utils import create_title
 from nav.watchdog.util import get_statuses
 
@@ -46,6 +46,8 @@ def render_overview(request):
         'num_cam': Cam.objects.count(),
         'num_ip_devices': Netbox.objects.count(),
         'num_serials': Device.objects.distinct('serial').count(),
+        'num_interfaces': Interface.objects.count(),
+        'num_sensors': Sensor.objects.count(),
     }
     return render(request, 'watchdog/frag_overview.html', context)
 
