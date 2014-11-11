@@ -1,10 +1,11 @@
 from twisted.internet import defer
+from nav.mibs import reduce_index
 from nav.mibs import mibretriever
 from nav.mibs.dlink_equipment_mib import DlinkEquipmentMib
 from nav.mibs.dlink_ddm_mib import DlinkDdmMib
 
-
 class DlinkSensorsMib(mibretriever.MibRetriever):
+
     def __init__(self, agent):
         super(DlinkSensorsMib, self).__init__(agent)
         self.dlink_equipment_mib = DlinkEquipmentMib(agent)
