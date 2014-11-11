@@ -3,6 +3,8 @@ from nav.mibs import mibretriever
 
 
 class NetpingMib(mibretriever.MibRetriever):
+    from nav.smidumps.netping_mib import MIB as mib
+
     def get_module_name(self):
         return self.mib.get('moduleName', None)
 
