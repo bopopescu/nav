@@ -68,6 +68,21 @@ def _reverse_sensor(sysname, name):
     return _single_like_match(Sensor, related=['netbox'],
                               sysname=sysname, internal_name=name)
 
+@reverses(r'\.devices\.(?P<sysname>[^.]+)\.cpu\.(?P<name>[^\.]+)')
+def _reverse_cpu(sysname, name):
+    return _single_like_match(Netbox, sysname=sysname)
+
+@reverses(r'\.devices\.(?P<sysname>[^.]+)\.system\.(?P<name>[^\.]+)')
+def _reverse_system(sysname, name):
+    return _single_like_match(Netbox, sysname=sysname)
+
+@reverses(r'\.devices\.(?P<sysname>[^.]+)\.ping\.(?P<name>[^\.]+)')
+def _reverse_ping(sysname, name):
+    return _single_like_match(Netbox, sysname=sysname)
+
+@reverses(r'\.devices\.(?P<sysname>[^.]+)\.ipdevpoll\.(?P<name>[^\.]+)')
+def _reverse_ipdevpoll(sysname, name):
+    return _single_like_match(Netbox, sysname=sysname)
 
 @reverses(r'\.devices\.(?P<sysname>[^.]+)$')
 def _reverse_device(sysname):
