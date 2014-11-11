@@ -3,6 +3,8 @@ from nav.mibs import mibretriever
 
 
 class DlinkGenmgmtMib(mibretriever.MibRetriever):
+    from nav.smidumps.dlink_genmgmt_mib import MIB as mib
+
     @defer.inlineCallbacks
     def get_cpu_utilization(self):
         util = yield self.get_next('agentCPUutilizationIn1min')

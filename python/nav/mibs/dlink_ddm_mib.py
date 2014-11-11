@@ -4,6 +4,8 @@ from nav.mibs import mibretriever
 
 
 class DlinkDdmMib(mibretriever.MibRetriever):
+    from nav.smidumps.dlink_ddm_mib import MIB as mib
+
     def get_module_name(self):
         return self.mib.get('moduleName', None)
 
