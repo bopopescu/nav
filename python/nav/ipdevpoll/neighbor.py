@@ -321,8 +321,8 @@ class LLDPNeighbor(Neighbor):
 def filter_duplicate_neighbors(nborlist):
     """Filters out duplicate neighbors on a port.
 
-    If the duplicates are all subinterfaces of a single master interface, the
-    returned Neighbor object's interface attribute will be set to the master
+    If the duplicates are all subinterfaces of a single main interface, the
+    returned Neighbor object's interface attribute will be set to the main
     interface (if one could be found in the db).
 
     """

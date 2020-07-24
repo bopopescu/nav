@@ -211,7 +211,7 @@ class CommandProcessor(object):
         self._logger = logging.getLogger('nav.ipdevpoll')
 
         if self.options.multiprocess:
-            self._logger.info("--- Starting ipdevpolld multiprocess master ---")
+            self._logger.info("--- Starting ipdevpolld multiprocess main ---")
         elif self.options.onlyjob:
             self._logger.info("--- Starting ipdevpolld %s ---",
                               self.options.onlyjob)

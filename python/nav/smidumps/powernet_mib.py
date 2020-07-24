@@ -5334,7 +5334,7 @@ Flag 12: Parallel Bus Termination Fault on Cable 1
 
 Flag 13: Parallel Bus Termination Fault on Cable 2
 Flag 14: Auxiliary Bus Termination Fault
-Flag 15: No Master Present In The Parallel System
+Flag 15: No Main Present In The Parallel System
 Flag 16: Overload on a Parallel Unit
 
 Flag 17: Parallel Configuration Fault
@@ -6312,7 +6312,7 @@ lostComm(7) indicates the device has lost communication.""",
             "description" :
                 """The firmware revision of the Intelligence Module.""",
         }, # column
-        "upsDiagIMSlaveFirmwareRev" : {
+        "upsDiagIMSubordinateFirmwareRev" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.1.13.1.2.1.5",
@@ -6322,7 +6322,7 @@ lostComm(7) indicates the device has lost communication.""",
             },
             "access" : "readonly",
             "description" :
-                """The slave firmware revision of the Intelligence Module.""",
+                """The subordinate firmware revision of the Intelligence Module.""",
         }, # column
         "upsDiagIMHardwareRev" : {
             "nodetype" : "column",
@@ -10282,7 +10282,7 @@ when the variable is read.
 Setting this value to setTXDLow(3), or setTXDHigh(4) will keep TXD
 always low or high respectively.""",
         }, # scalar
-        "masterswitch" : {
+        "mainswitch" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4",
@@ -10359,12 +10359,12 @@ the PDU internal. This value is set at the factory.""",
 the PDU internal microprocessor. This value is set at
 the factory.""",
         }, # scalar
-        "sPDUMasterControl" : {
+        "sPDUMainControl" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.2",
         }, # node
-        "sPDUMasterControlSwitch" : {
+        "sPDUMainControlSwitch" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.2.1",
@@ -10416,26 +10416,26 @@ off immediately.
 Setting this OID to rebootAllNow (4) will reboot all outlets
 immediately.
 
-For MasterSwitch firmware version 1.X, setting this OID to 
+For MainSwitch firmware version 1.X, setting this OID to 
 rebootAllSequence (5) reboots all outlets, with power returned 
 to the outlets in the sequence defined by each outlet's 
 sPDUOutletPowerOnTime OID value.
 
-For MasterSwitch firmware version 2.X, setting this OID to 
+For MainSwitch firmware version 2.X, setting this OID to 
 rebootAllSequence (5) will cause a turnAllOffSequence to be performed. 
-Once all outlets are off, the MasterSwitch will then delay the 
-sPDUMasterConfigReboot OID time, and then perform a turnAllOnSequence.    
+Once all outlets are off, the MainSwitch will then delay the 
+sPDUMainConfigReboot OID time, and then perform a turnAllOnSequence.    
 
-For MasterSwitch firmware version 2.X, setting this OID to 
+For MainSwitch firmware version 2.X, setting this OID to 
 turnAllOffSequence (7) will turn all outlets off as defined by 
 each outlet's sPDUOutletPowerOffTime OID value.
 
-For MasterSwitch firmware version 1.X, setting this OID to 
+For MainSwitch firmware version 1.X, setting this OID to 
 turnAllOffSequence (7) will have no effect.
 
 Getting this OID will return the noCommand (6) value.""",
         }, # scalar
-        "sPDUMasterState" : {
+        "sPDUMainState" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.2.2",
@@ -10462,7 +10462,7 @@ is advised to shut down all equipment powered by the PDU and
 then cycle the PDU's power. This will put the PDU in a consistent
 state.""",
         }, # scalar
-        "sPDUMasterPending" : {
+        "sPDUMainPending" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.2.3",
@@ -10485,12 +10485,12 @@ in the PDU. In the rare case that this should happen, the user
 is advised to shut down all equipment powered by the PDU and then
 cycle the PDU's power. This will put the PDU in a consistent state.""",
         }, # scalar
-        "sPDUMasterConfig" : {
+        "sPDUMainConfig" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.3",
         }, # node
-        "sPDUMasterConfigPowerOn" : {
+        "sPDUMainConfigPowerOn" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.3.1",
@@ -10502,7 +10502,7 @@ cycle the PDU's power. This will put the PDU in a consistent state.""",
             "description" :
                 """ The amount of delay, in seconds, between when
 power is provided to the PDU and when the PDU
-provides basic master power to the outlets.       
+provides basic main power to the outlets.       
 
 Allowed values are:
 
@@ -10521,7 +10521,7 @@ acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.""",
         }, # scalar
-        "sPDUMasterConfigReboot" : {
+        "sPDUMainConfigReboot" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.3.2",
@@ -10553,10 +10553,10 @@ acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.
 
-This OID is read-only for the MasterSwitch version 2.X and is the 
+This OID is read-only for the MainSwitch version 2.X and is the 
 maximum sPDUOutletRebootDuration OID of the individual outlets.""",
         }, # scalar
-        "sPDUMasterConfigPDUName" : {
+        "sPDUMainConfigPDUName" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.4.3.3",
@@ -10706,16 +10706,16 @@ Setting this variable to outletReboot (3) will reboot the outlet.
 
 Setting this variable to outletOnWithDelay (5) will turn the outlet on
 after the sPDUOutletPowerOnTime OID has elapsed. This option is not
-valid for MasterSwitch firmware version 1.X.
+valid for MainSwitch firmware version 1.X.
 
 Setting this variable to outletOffWithDelay (6) will turn the outlet off
 after the sPDUOutletPowerOffTime OID has elapsed. This option is not valid
-for MasterSwitch firmware version 1.X.
+for MainSwitch firmware version 1.X.
 
 Setting this variable to outletRebootWithDelay (7) will turn the outlet off
 after the sPDUOutletPowerOffTime OID has elapsed, wait the sPDUOutletRebootDuration
 OID time, then turn the outlet back on.  
-This option is not valid for MasterSwitch firmware version 1.X.""",
+This option is not valid for MainSwitch firmware version 1.X.""",
         }, # column
         "sPDUOutletCtlName" : {
             "nodetype" : "column",
@@ -10792,18 +10792,18 @@ OID.""",
             "access" : "readwrite",
             "description" :
                 """The amount of time (in seconds) the outlet will delay 
-powering on when the MasterSwitch is powered on.
+powering on when the MainSwitch is powered on.
        
 Allowed values are:
 
 -1 never power on automatically.
-0  power on with the Master Switch.
-15 power on 15 seconds after the MasterSwitch has power applied.
-30 power on 30 seconds after the MasterSwitch has power applied.
-45 power on 45 seconds after the MasterSwitch has power applied.
-60 power on 60 seconds (1 minute) after the MasterSwitch has power applied.
-120 power on 120 seconds (2 minutes) after the MasterSwitch has power applied.
-300 power on 300 seconds (5 minutes) after the MasterSwitch has power applied.
+0  power on with the Main Switch.
+15 power on 15 seconds after the MainSwitch has power applied.
+30 power on 30 seconds after the MainSwitch has power applied.
+45 power on 45 seconds after the MainSwitch has power applied.
+60 power on 60 seconds (1 minute) after the MainSwitch has power applied.
+120 power on 120 seconds (2 minutes) after the MainSwitch has power applied.
+300 power on 300 seconds (5 minutes) after the MainSwitch has power applied.
 
 If a value other than a supported value is provided in a 
 set request, the PDU interprets it as the next lower
@@ -10839,7 +10839,7 @@ powering off.
 Allowed values are:
 
 -1 never power off automatically.
-0  power off with the MasterSwitch.
+0  power off with the MainSwitch.
 15 power off 15 seconds after being commanded.
 30 power off 30 seconds after being commanded.
 45 power off 45 seconds after being commanded.
@@ -10853,7 +10853,7 @@ acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.
 
-This OID is not available for MasterSwitch firmware version 1.X.""",
+This OID is not available for MainSwitch firmware version 1.X.""",
         }, # column
         "sPDUOutletRebootDuration" : {
             "nodetype" : "column",
@@ -10887,9 +10887,9 @@ acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.
 
-This OID is not available for MasterSwitch firmware version 1.X.""",
+This OID is not available for MainSwitch firmware version 1.X.""",
         }, # column
-        "masterswitchVM" : {
+        "mainswitchVM" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5",
@@ -10909,7 +10909,7 @@ This OID is not available for MasterSwitch firmware version 1.X.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch VMs controllable
+                """The number of MainSwitch VMs controllable
 by this IP address.""",
         }, # scalar
         "sPDUIdentVMTable" : {
@@ -10918,7 +10918,7 @@ by this IP address.""",
             "oid" : "1.3.6.1.4.1.318.1.1.5.1.2",
             "status" : "current",
             "description" :
-                """Allows for query of the individual MasterSwitch VMs. 
+                """Allows for query of the individual MainSwitch VMs. 
 The number of entries is contained in the 
 sPDUIdentVMTableSize OID.""",
         }, # table
@@ -10931,7 +10931,7 @@ sPDUIdentVMTableSize OID.""",
                 "sPDUIdentVMIndex",
             ],
             "description" :
-                """The MasterSwitch VMs to query.""",
+                """The MainSwitch VMs to query.""",
         }, # row
         "sPDUIdentVMIndex" : {
             "nodetype" : "column",
@@ -10943,7 +10943,7 @@ sPDUIdentVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM entry.""",
+                """The index to the MainSwitch VM entry.""",
         }, # column
         "sPDUIdentNameVM" : {
             "nodetype" : "column",
@@ -10956,7 +10956,7 @@ sPDUIdentVMTableSize OID.""",
             "access" : "readonly",
             "description" :
                 """A 23-character string identifying the 
-MasterSwitch VM. """,
+MainSwitch VM. """,
         }, # column
         "sPDUIdentHardwareRevVM" : {
             "nodetype" : "column",
@@ -10968,7 +10968,7 @@ MasterSwitch VM. """,
             },
             "access" : "readonly",
             "description" :
-                """The hardware version of the MasterSwitch VM. 
+                """The hardware version of the MainSwitch VM. 
 This value is set at the factory.""",
         }, # column
         "sPDUIdentFirmwareRevVM" : {
@@ -10981,7 +10981,7 @@ This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """An 6-character ID string identifying the MasterSwitch VM 
+                """An 6-character ID string identifying the MainSwitch VM 
 firmware version. This value is set at the factory.""",
         }, # column
         "sPDUIdentDateOfManufactureVM" : {
@@ -10994,7 +10994,7 @@ firmware version. This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """The date when the MasterSwitch VM was manufactured in mm/dd/yyyy format.
+                """The date when the MainSwitch VM was manufactured in mm/dd/yyyy format.
 This value is set at the factory. """,
         }, # column
         "sPDUIdentModelNumberVM" : {
@@ -11008,7 +11008,7 @@ This value is set at the factory. """,
             "access" : "readonly",
             "description" :
                 """A 17-character string identifying the model number of 
-the MasterSwitch VM. This value is set at the factory.""",
+the MainSwitch VM. This value is set at the factory.""",
         }, # column
         "sPDUIdentSerialNumberVM" : {
             "nodetype" : "column",
@@ -11021,14 +11021,14 @@ the MasterSwitch VM. This value is set at the factory.""",
             "access" : "readonly",
             "description" :
                 """A 17-character string identifying the serial number of 
-the MasterSwitch VM. This value is set at the factory.""",
+the MainSwitch VM. This value is set at the factory.""",
         }, # column
-        "sPDUMasterControlVM" : {
+        "sPDUMainControlVM" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2",
         }, # node
-        "sPDUMasterControlVMTableSize" : {
+        "sPDUMainControlVMTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.1",
@@ -11038,31 +11038,31 @@ the MasterSwitch VM. This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch VMs controllable
+                """The number of MainSwitch VMs controllable
 by this IP address.""",
         }, # scalar
-        "sPDUMasterControlVMTable" : {
+        "sPDUMainControlVMTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.2",
             "status" : "current",
             "description" :
-                """Allows for control of the individual MasterSwitch VMs.
+                """Allows for control of the individual MainSwitch VMs.
 The number of entries is contained in the 
-sPDUMasterControlVMTableSize OID.""",
+sPDUMainControlVMTableSize OID.""",
         }, # table
-        "sPDUMasterControlVMEntry" : {
+        "sPDUMainControlVMEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterControlVMIndex",
+                "sPDUMainControlVMIndex",
             ],
             "description" :
-                """The MasterSwitch VMs to control.""",
+                """The MainSwitch VMs to control.""",
         }, # row
-        "sPDUMasterControlVMIndex" : {
+        "sPDUMainControlVMIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.2.1.1",
@@ -11072,9 +11072,9 @@ sPDUMasterControlVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM entry.""",
+                """The index to the MainSwitch VM entry.""",
         }, # column
-        "sPDUMasterControlVMName" : {
+        "sPDUMainControlVMName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.2.1.2",
@@ -11084,11 +11084,11 @@ sPDUMasterControlVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch VM. The maximum 
+                """The name of the MainSwitch VM. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigVMName OID.""",
+using the sPDUMainConfigVMName OID.""",
         }, # column
-        "sPDUMasterControlVMCommand" : {
+        "sPDUMainControlVMCommand" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.2.2.1.3",
@@ -11160,8 +11160,8 @@ Setting this OID to delayedAllOffVM (6) will turn all outlets
 off as defined by each outlet's sPDUOutletConfigVMPowerOffTime OID value.
 
 Setting this OID to sequencedAllRebootVM (7) will cause a 
-immediateAllOffVM command to be performed. The MasterSwitch VM will 
-then delay the sPDUMasterStatusVMRebootDuration OID time, and then 
+immediateAllOffVM command to be performed. The MainSwitch VM will 
+then delay the sPDUMainStatusVMRebootDuration OID time, and then 
 perform a delayedAllOnVM command.    
 
 Setting this OID to delayedAllRebootVM (8) will cause a delayedAllOffVM
@@ -11170,11 +11170,11 @@ sPDUOutletConfigVMRebootDuration before returning power to the outlet.
 
 Setting this OID to delayedSequenceAllRebootVM (9) will cause a 
 delayedAllOffVM command to be performed. Once all outlets are off, 
-the MasterSwitch VM will then delay the sPDUMasterStatusVMRebootDuration 
+the MainSwitch VM will then delay the sPDUMainStatusVMRebootDuration 
 OID time, and then perform a delayedAllOnVM command.    
 
 Setting this OID to cancelAllPendingCommandsVM (10) will cause all pending
-commands on the MasterSwitch VM to be canceled.
+commands on the MainSwitch VM to be canceled.
 
 
 Setting this OID to audioAlarmMute (11) will temporarily silence the audible
@@ -11183,12 +11183,12 @@ will be activated on subsequent overload alarms.
 
 Getting this OID will return the noCommandAllVM (1) value.""",
         }, # column
-        "sPDUMasterConfigVM" : {
+        "sPDUMainConfigVM" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3",
         }, # node
-        "sPDUMasterConfigVMTableSize" : {
+        "sPDUMainConfigVMTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.1",
@@ -11198,31 +11198,31 @@ Getting this OID will return the noCommandAllVM (1) value.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch VMs configurable
+                """The number of MainSwitch VMs configurable
 by this IP address.""",
         }, # scalar
-        "sPDUMasterConfigVMTable" : {
+        "sPDUMainConfigVMTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2",
             "status" : "current",
             "description" :
-                """Allows for configuration of the individual MasterSwitch VMs.
+                """Allows for configuration of the individual MainSwitch VMs.
 The number of entries is contained in the 
-sPDUMasterConfigVMTableSize OID.""",
+sPDUMainConfigVMTableSize OID.""",
         }, # table
-        "sPDUMasterConfigVMEntry" : {
+        "sPDUMainConfigVMEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterConfigVMIndex",
+                "sPDUMainConfigVMIndex",
             ],
             "description" :
-                """The MasterSwitch VMs to configure.""",
+                """The MainSwitch VMs to configure.""",
         }, # row
-        "sPDUMasterConfigVMIndex" : {
+        "sPDUMainConfigVMIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.1",
@@ -11232,9 +11232,9 @@ sPDUMasterConfigVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM entry.""",
+                """The index to the MainSwitch VM entry.""",
         }, # column
-        "sPDUMasterConfigVMName" : {
+        "sPDUMainConfigVMName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.2",
@@ -11244,9 +11244,9 @@ sPDUMasterConfigVMTableSize OID.""",
             },
             "access" : "readwrite",
             "description" :
-                """The name of the MasterSwitch VM. Maximum size is 23 characters.""",
+                """The name of the MainSwitch VM. Maximum size is 23 characters.""",
         }, # column
-        "sPDUMasterConfigVMColdstartDelay" : {
+        "sPDUMainConfigVMColdstartDelay" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.3",
@@ -11257,8 +11257,8 @@ sPDUMasterConfigVMTableSize OID.""",
             "access" : "readwrite",
             "description" :
                 """ The amount of delay, in seconds, between when
-power is provided to the MasterSwitch VM and 
-when the MasterSwitch VM provides basic master 
+power is provided to the MainSwitch VM and 
+when the MainSwitch VM provides basic main 
 power to the outlets.       
 
 Allowed values are:
@@ -11273,12 +11273,12 @@ Allowed values are:
 300 apply power in 300 seconds (5 minutes).
 
 If a value other than a supported value is provided in a 
-set request, the MasterSwitch VM interprets it as the next lower
+set request, the MainSwitch VM interprets it as the next lower
 acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.""",
         }, # column
-        "sPDUMasterConfigVMAudioAlarmActivated" : {
+        "sPDUMainConfigVMAudioAlarmActivated" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.4",
@@ -11303,18 +11303,18 @@ value is used.""",
             "access" : "readwrite",
             "description" :
                 """Setting this OID to audioAlarmActiveNever (1) will disable
-the audio alarm on the MasterSwitch VM.
+the audio alarm on the MainSwitch VM.
 
 Setting this OID to audioAlarmActiveOnOverload (2) will 
-activate the audio alarm on the MasterSwitch VM when an
+activate the audio alarm on the MainSwitch VM when an
 overload condition is present.       
 
 Setting this OID to audioAlarmActiveOnOverloadImminent (3) 
-will activate the audio alarm on the MasterSwitch VM when
-the load on the MasterSwitch VM has surpassed the
-sPDUMasterConfigVMHighLoadWarningThreshold OID value.""",
+will activate the audio alarm on the MainSwitch VM when
+the load on the MainSwitch VM has surpassed the
+sPDUMainConfigVMHighLoadWarningThreshold OID value.""",
         }, # column
-        "sPDUMasterConfigVMHighLoadWarningThreshold" : {
+        "sPDUMainConfigVMHighLoadWarningThreshold" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.5",
@@ -11340,7 +11340,7 @@ sPDUMasterConfigVMHighLoadWarningThreshold OID value.""",
 the load is nearing an overload condition. It is 
 represented as a percentage of full load.""",
         }, # column
-        "sPDUMasterConfigVMLowLoadWarningThreshold" : {
+        "sPDUMainConfigVMLowLoadWarningThreshold" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.6",
@@ -11366,7 +11366,7 @@ represented as a percentage of full load.""",
 the load is nearing a low consumption condition. It is 
 represented as a percentage of full load.""",
         }, # column
-        "sPDUMasterConfigVMOverloadRestriction" : {
+        "sPDUMainConfigVMOverloadRestriction" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.3.2.1.7",
@@ -11390,7 +11390,7 @@ represented as a percentage of full load.""",
             },
             "access" : "readwrite",
             "description" :
-                """This OID controls the behavior of the MasterSwitch VM
+                """This OID controls the behavior of the MainSwitch VM
 when an overload condition is possible and additional 
 outlets are requested to be turned on. 
 
@@ -11398,19 +11398,19 @@ Setting this OID to alwaysAllowTurnON (1) will always allow
 the outlets to turn on.
 
 Setting this OID to restrictOnWarning (2) will not allow 
-outlets to turn on if the sPDUMasterConfigVMHighLoadWarningThreshold
+outlets to turn on if the sPDUMainConfigVMHighLoadWarningThreshold
 OID is exceeded.
        
 Setting this OID to restrictOnOverload (3) will not allow
-outlets to turn on if the MasterSwitch Vm is in an 
+outlets to turn on if the MainSwitch Vm is in an 
 overload condition.""",
         }, # column
-        "sPDUMasterStatusVM" : {
+        "sPDUMainStatusVM" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4",
         }, # node
-        "sPDUMasterStatusVMTableSize" : {
+        "sPDUMainStatusVMTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.1",
@@ -11420,31 +11420,31 @@ overload condition.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch VMs at
+                """The number of MainSwitch VMs at
 this IP address.""",
         }, # scalar
-        "sPDUMasterStatusVMTable" : {
+        "sPDUMainStatusVMTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2",
             "status" : "current",
             "description" :
                 """Allows for gathering of status from the individual 
-MasterSwitch VMs. The number of entries is contained 
-in the sPDUMasterStatusVMTableSize OID.""",
+MainSwitch VMs. The number of entries is contained 
+in the sPDUMainStatusVMTableSize OID.""",
         }, # table
-        "sPDUMasterStatusVMEntry" : {
+        "sPDUMainStatusVMEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterStatusVMIndex",
+                "sPDUMainStatusVMIndex",
             ],
             "description" :
-                """The MasterSwitch VMs to gather status from.""",
+                """The MainSwitch VMs to gather status from.""",
         }, # row
-        "sPDUMasterStatusVMIndex" : {
+        "sPDUMainStatusVMIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.1",
@@ -11454,9 +11454,9 @@ in the sPDUMasterStatusVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM entry.""",
+                """The index to the MainSwitch VM entry.""",
         }, # column
-        "sPDUMasterStatusVMName" : {
+        "sPDUMainStatusVMName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.2",
@@ -11466,9 +11466,9 @@ in the sPDUMasterStatusVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch VM. Maximum size is 23 characters.""",
+                """The name of the MainSwitch VM. Maximum size is 23 characters.""",
         }, # column
-        "sPDUMasterStatusVMCommandPending" : {
+        "sPDUMainStatusVMCommandPending" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.3",
@@ -11476,11 +11476,11 @@ in the sPDUMasterStatusVMTableSize OID.""",
             "syntax" : {
                 "type" :                 {
                     "basetype" : "Enumeration",
-                    "commandPendingMasterTrueVM" : {
+                    "commandPendingMainTrueVM" : {
                         "nodetype" : "namednumber",
                         "number" : "1"
                     },
-                    "commandPendingMasterFalseVM" : {
+                    "commandPendingMainFalseVM" : {
                         "nodetype" : "namednumber",
                         "number" : "2"
                     },
@@ -11488,14 +11488,14 @@ in the sPDUMasterStatusVMTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """Getting this OID will return commandPendingMasterTrueVM (1)
-if the MasterSwitch VM has a pending command on any of its
+                """Getting this OID will return commandPendingMainTrueVM (1)
+if the MainSwitch VM has a pending command on any of its
 outlets.
 
-commandPendingMasterFalseVM (2) will be returned if there are
+commandPendingMainFalseVM (2) will be returned if there are
 no pending commands.""",
         }, # column
-        "sPDUMasterStatusVMOverloadCondition" : {
+        "sPDUMainStatusVMOverloadCondition" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.4",
@@ -11516,14 +11516,14 @@ no pending commands.""",
             "access" : "readonly",
             "description" :
                 """Getting this OID will return overloadConditionTrueVM (1)
-if the sPDUMasterConfigVMHighLoadWarningThreshold OID is
+if the sPDUMainConfigVMHighLoadWarningThreshold OID is
 violated.
 
 overloadConditionFalseVM (2) will be returned if the 
-sPDUMasterConfigVMHighLoadWarningThreshold OID is not
+sPDUMainConfigVMHighLoadWarningThreshold OID is not
 violated.""",
         }, # column
-        "sPDUMasterStatusVMLowLoadCondition" : {
+        "sPDUMainStatusVMLowLoadCondition" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.5",
@@ -11544,14 +11544,14 @@ violated.""",
             "access" : "readonly",
             "description" :
                 """Getting this OID will return lowLoadConditionTrueVM (1)
-if the sPDUMasterConfigVMLowLoadWarningThreshold OID is
+if the sPDUMainConfigVMLowLoadWarningThreshold OID is
 violated.
 
 lowLoadConditionFalseVM (2) will be returned if the 
-sPDUMasterConfigVMHighLoadWarningThreshold OID is not
+sPDUMainConfigVMHighLoadWarningThreshold OID is not
 violated. """,
         }, # column
-        "sPDUMasterStatusVMCurrentLoad" : {
+        "sPDUMainStatusVMCurrentLoad" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.6",
@@ -11565,7 +11565,7 @@ violated. """,
 being consumed by the load. It is represented as a 
 percentage of full load.""",
         }, # column
-        "sPDUMasterStatusVMMaxLoad" : {
+        "sPDUMainStatusVMMaxLoad" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.7",
@@ -11576,10 +11576,10 @@ percentage of full load.""",
             "access" : "readonly",
             "description" :
                 """Getting this OID will return the total amount of power
-that this MasterSwitch VM can provide. It is represented
+that this MainSwitch VM can provide. It is represented
 in Amps.""",
         }, # column
-        "sPDUMasterStatusVMOutletCount" : {
+        "sPDUMainStatusVMOutletCount" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.8",
@@ -11590,9 +11590,9 @@ in Amps.""",
             "access" : "readonly",
             "description" :
                 """Getting this OID will return the number of controllable
-outlets for this MasterSwitch VM.""",
+outlets for this MainSwitch VM.""",
         }, # column
-        "sPDUMasterStatusVMRebootDuration" : {
+        "sPDUMainStatusVMRebootDuration" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.5.4.2.1.9",
@@ -11604,7 +11604,7 @@ outlets for this MasterSwitch VM.""",
             "description" :
                 """Getting this OID will return the largest
 sPDUOutletConfigVMRebootDuration OID time 
-for this MasterSwitch VM.""",
+for this MainSwitch VM.""",
         }, # column
         "sPDUOutletControlVM" : {
             "nodetype" : "node",
@@ -11618,7 +11618,7 @@ for this MasterSwitch VM.""",
             "status" : "current",
             "description" :
                 """Allows for control of individual outlet switches. The number of
-entries is contained in the sPDUMasterStatusOutletCount OID.""",
+entries is contained in the sPDUMainStatusOutletCount OID.""",
         }, # table
         "sPDUOutletControlVMEntry" : {
             "nodetype" : "row",
@@ -11642,7 +11642,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM.""",
+                """The index to the MainSwitch VM.""",
         }, # column
         "sPDUOutletControlVMName" : {
             "nodetype" : "column",
@@ -11654,7 +11654,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch VM. Maximum size is 23 characters.
+                """The name of the MainSwitch VM. Maximum size is 23 characters.
 This OID is provided for informational purposes only.""",
         }, # column
         "sPDUOutletControlVMOutletIndex" : {
@@ -11741,7 +11741,7 @@ Setting this variable to delayedOffVM (5) will turn the outlet off
 after the sPDUOutletConfigVMPowerOffTime OID time has elapsed.
 
 Setting this variable to delayedRebootVM  (6) will cause the 
-MasterSwitch VM to perform a delayedOffVM command, wait the 
+MainSwitch VM to perform a delayedOffVM command, wait the 
 sPDUOutletConfigVMRebootDuration OID time, and then perform the
 immediateOnVM command.
 
@@ -11760,7 +11760,7 @@ pending command to this outlet to be canceled.""",
             "status" : "current",
             "description" :
                 """Allows for configuration of individual outlets. The number of
-entries is contained in the sPDUMasterStatusOutletCount OID.""",
+entries is contained in the sPDUMainStatusOutletCount OID.""",
         }, # table
         "sPDUOutletConfigVMEntry" : {
             "nodetype" : "row",
@@ -11784,7 +11784,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM.""",
+                """The index to the MainSwitch VM.""",
         }, # column
         "sPDUOutletConfigVMName" : {
             "nodetype" : "column",
@@ -11796,7 +11796,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch VM. Maximum size is 23 characters.""",
+                """The name of the MainSwitch VM. Maximum size is 23 characters.""",
         }, # column
         "sPDUOutletConfigVMOutletIndex" : {
             "nodetype" : "column",
@@ -11848,7 +11848,7 @@ Allowed values are:
 300 power on 300 seconds (5 minutes) after being commanded.
 
 If a value other than a supported value is provided in a 
-set request, the MasterSwitch VM interprets it as the next lower
+set request, the MainSwitch VM interprets it as the next lower
 acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.""",
@@ -11880,7 +11880,7 @@ Allowed values are:
 300 power off 300 seconds (5 minutes) after being commanded.
 
 If a value other than a supported value is provided in a 
-set request, the MasterSwitch VM interprets it as the next lower
+set request, the MainSwitch VM interprets it as the next lower
 acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.""",
@@ -11912,7 +11912,7 @@ Allowed values are:
 60 wait 60 seconds (1 minute) between off/on.
 
 If a value other than a supported value is provided in a 
-set request, the MasterSwitch VM interprets it as the next lower
+set request, the MainSwitch VM interprets it as the next lower
 acceptable value.  If the provided value is lower than
 the lowest acceptable value, the lowest acceptable 
 value is used.""",
@@ -11929,7 +11929,7 @@ value is used.""",
             "status" : "current",
             "description" :
                 """Allows for getting of status of individual outlets. The number of
-entries is contained in the sPDUMasterStatusOutletCount OID.""",
+entries is contained in the sPDUMainStatusOutletCount OID.""",
         }, # table
         "sPDUOutletStatusVMEntry" : {
             "nodetype" : "row",
@@ -11953,7 +11953,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch VM.""",
+                """The index to the MainSwitch VM.""",
         }, # column
         "sPDUOutletStatusVMName" : {
             "nodetype" : "column",
@@ -11965,7 +11965,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch VM. Maximum size is 23 characters.""",
+                """The name of the MainSwitch VM. Maximum size is 23 characters.""",
         }, # column
         "sPDUOutletStatusVMOutletIndex" : {
             "nodetype" : "column",
@@ -12043,7 +12043,7 @@ will be returned. If there is not a command pending
 on the outlet, the outletStatusVMNoCommandPending (2)
 will be returned.""",
         }, # column
-        "masterswitchMSP" : {
+        "mainswitchMSP" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6",
@@ -12063,7 +12063,7 @@ will be returned.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch pluses controllable
+                """The number of MainSwitch pluses controllable
 by this IP address.""",
         }, # scalar
         "sPDUIdentMSPTable" : {
@@ -12072,7 +12072,7 @@ by this IP address.""",
             "oid" : "1.3.6.1.4.1.318.1.1.6.1.2",
             "status" : "current",
             "description" :
-                """Allows for query of the individual MasterSwitch pluses. 
+                """Allows for query of the individual MainSwitch pluses. 
 The number of entries is contained in the 
 sPDUIdentMSPTableSize OID.""",
         }, # table
@@ -12085,7 +12085,7 @@ sPDUIdentMSPTableSize OID.""",
                 "sPDUIdentMSPIndex",
             ],
             "description" :
-                """The MasterSwitch pluses to query.""",
+                """The MainSwitch pluses to query.""",
         }, # row
         "sPDUIdentMSPIndex" : {
             "nodetype" : "column",
@@ -12097,7 +12097,7 @@ sPDUIdentMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus entry.""",
+                """The index to the MainSwitch plus entry.""",
         }, # column
         "sPDUIdentNameMSP" : {
             "nodetype" : "column",
@@ -12109,9 +12109,9 @@ sPDUIdentMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUIdentHardwareRevMSP" : {
             "nodetype" : "column",
@@ -12123,7 +12123,7 @@ using the sPDUMasterConfigMSPName OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The hardware version of the MasterSwitch plus. 
+                """The hardware version of the MainSwitch plus. 
 This value is set at the factory.""",
         }, # column
         "sPDUIdentFirmwareRevMSP" : {
@@ -12136,7 +12136,7 @@ This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """An 6-character ID string identifying the MasterSwitch plus 
+                """An 6-character ID string identifying the MainSwitch plus 
 firmware version. This value is set at the factory.""",
         }, # column
         "sPDUIdentDateOfManufactureMSP" : {
@@ -12149,7 +12149,7 @@ firmware version. This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """The date when the MasterSwitch plus was manufactured in mm/dd/yyyy format.
+                """The date when the MainSwitch plus was manufactured in mm/dd/yyyy format.
 This value is set at the factory. """,
         }, # column
         "sPDUIdentModelNumberMSP" : {
@@ -12163,7 +12163,7 @@ This value is set at the factory. """,
             "access" : "readonly",
             "description" :
                 """A 17-character string identifying the model number of 
-the MasterSwitch plus. This value is set at the factory.""",
+the MainSwitch plus. This value is set at the factory.""",
         }, # column
         "sPDUIdentSerialNumberMSP" : {
             "nodetype" : "column",
@@ -12176,14 +12176,14 @@ the MasterSwitch plus. This value is set at the factory.""",
             "access" : "readonly",
             "description" :
                 """A 17-character string identifying the serial number of 
-the MasterSwitch plus. This value is set at the factory.""",
+the MainSwitch plus. This value is set at the factory.""",
         }, # column
-        "sPDUMasterControlMSP" : {
+        "sPDUMainControlMSP" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2",
         }, # node
-        "sPDUMasterControlMSPTableSize" : {
+        "sPDUMainControlMSPTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.1",
@@ -12193,31 +12193,31 @@ the MasterSwitch plus. This value is set at the factory.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch pluses controllable
+                """The number of MainSwitch pluses controllable
 by this IP address.""",
         }, # scalar
-        "sPDUMasterControlMSPTable" : {
+        "sPDUMainControlMSPTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.2",
             "status" : "current",
             "description" :
-                """Allows for control of the individual MasterSwitch pluses.
+                """Allows for control of the individual MainSwitch pluses.
 The number of entries is contained in the 
-sPDUMasterControlMSPTableSize OID.""",
+sPDUMainControlMSPTableSize OID.""",
         }, # table
-        "sPDUMasterControlMSPEntry" : {
+        "sPDUMainControlMSPEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterControlMSPIndex",
+                "sPDUMainControlMSPIndex",
             ],
             "description" :
-                """The MasterSwitch pluses to control.""",
+                """The MainSwitch pluses to control.""",
         }, # row
-        "sPDUMasterControlMSPIndex" : {
+        "sPDUMainControlMSPIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.2.1.1",
@@ -12227,9 +12227,9 @@ sPDUMasterControlMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus entry.""",
+                """The index to the MainSwitch plus entry.""",
         }, # column
-        "sPDUMasterControlMSPName" : {
+        "sPDUMainControlMSPName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.2.1.2",
@@ -12239,11 +12239,11 @@ sPDUMasterControlMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
-        "sPDUMasterControlMSPCommand" : {
+        "sPDUMainControlMSPCommand" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.2.2.1.3",
@@ -12324,19 +12324,19 @@ the outlets as defined by each outlet's sPDUOutletConfigMSPPowerOnDelay
 OID value.
              
 Setting this OID to cancelAllPendingCommandsMSP (9) will cause all pending
-commands on the MasterSwitch plus to be canceled.
+commands on the MainSwitch plus to be canceled.
 
 Setting this OID to restoreFactoryDefaultsMSP (10) will cause the settings of
-the MasterSwitch plus to be restored to the factory defaults.
+the MainSwitch plus to be restored to the factory defaults.
 
 Getting this OID will return the noCommandAllMSP (1) value.""",
         }, # column
-        "sPDUMasterConfigMSP" : {
+        "sPDUMainConfigMSP" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3",
         }, # node
-        "sPDUMasterConfigMSPTableSize" : {
+        "sPDUMainConfigMSPTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.1",
@@ -12346,31 +12346,31 @@ Getting this OID will return the noCommandAllMSP (1) value.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch pluses configurable
+                """The number of MainSwitch pluses configurable
 by this IP address.""",
         }, # scalar
-        "sPDUMasterConfigMSPTable" : {
+        "sPDUMainConfigMSPTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2",
             "status" : "current",
             "description" :
-                """Allows for configuration of the individual MasterSwitch pluses.
+                """Allows for configuration of the individual MainSwitch pluses.
 The number of entries is contained in the 
-sPDUMasterConfigMSPTableSize OID.""",
+sPDUMainConfigMSPTableSize OID.""",
         }, # table
-        "sPDUMasterConfigMSPEntry" : {
+        "sPDUMainConfigMSPEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterConfigMSPIndex",
+                "sPDUMainConfigMSPIndex",
             ],
             "description" :
-                """The MasterSwitch pluses to configure.""",
+                """The MainSwitch pluses to configure.""",
         }, # row
-        "sPDUMasterConfigMSPIndex" : {
+        "sPDUMainConfigMSPIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2.1.1",
@@ -12380,9 +12380,9 @@ sPDUMasterConfigMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus entry.""",
+                """The index to the MainSwitch plus entry.""",
         }, # column
-        "sPDUMasterConfigMSPName" : {
+        "sPDUMainConfigMSPName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2.1.2",
@@ -12392,9 +12392,9 @@ sPDUMasterConfigMSPTableSize OID.""",
             },
             "access" : "readwrite",
             "description" :
-                """The name of the MasterSwitch plus. Maximum size is 23 characters.""",
+                """The name of the MainSwitch plus. Maximum size is 23 characters.""",
         }, # column
-        "sPDUMasterConfigMSPPowerOnTimeDelay" : {
+        "sPDUMainConfigMSPPowerOnTimeDelay" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2.1.3",
@@ -12417,8 +12417,8 @@ sPDUMasterConfigMSPTableSize OID.""",
             "access" : "readwrite",
             "description" :
                 """ The amount of delay, in seconds, between when
-power is provided to the MasterSwitch plus and 
-when the MasterSwitch plus provides basic master 
+power is provided to the MainSwitch plus and 
+when the MainSwitch plus provides basic main 
 power to the outlets.       
 
 Allowed values are:
@@ -12426,7 +12426,7 @@ Allowed values are:
 0 - 9999 seconds (0 - 2hrs, 46 mins, 39 secs).
 0 indicates to apply power immediately.""",
         }, # column
-        "sPDUMasterConfigMSPManualButton" : {
+        "sPDUMainConfigMSPManualButton" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.3.2.1.4",
@@ -12447,17 +12447,17 @@ Allowed values are:
             "access" : "readwrite",
             "description" :
                 """Setting this OID to manualButtonDisabled (1) will disable
-the manual button on the MasterSwitch plus.
+the manual button on the MainSwitch plus.
 
 Setting this OID to manualButtonEnabled (2) will enable
-the manual button on the MasterSwitch plus.""",
+the manual button on the MainSwitch plus.""",
         }, # column
-        "sPDUMasterStatusMSP" : {
+        "sPDUMainStatusMSP" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4",
         }, # node
-        "sPDUMasterStatusMSPTableSize" : {
+        "sPDUMainStatusMSPTableSize" : {
             "nodetype" : "scalar",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.1",
@@ -12467,31 +12467,31 @@ the manual button on the MasterSwitch plus.""",
             },
             "access" : "readonly",
             "description" :
-                """The number of MasterSwitch pluses at
+                """The number of MainSwitch pluses at
 this IP address.""",
         }, # scalar
-        "sPDUMasterStatusMSPTable" : {
+        "sPDUMainStatusMSPTable" : {
             "nodetype" : "table",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.2",
             "status" : "current",
             "description" :
                 """Allows for gathering of status from the individual 
-MasterSwitch pluses. The number of entries is contained 
-in the sPDUMasterStatusMSPTableSize OID.""",
+MainSwitch pluses. The number of entries is contained 
+in the sPDUMainStatusMSPTableSize OID.""",
         }, # table
-        "sPDUMasterStatusMSPEntry" : {
+        "sPDUMainStatusMSPEntry" : {
             "nodetype" : "row",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.2.1",
             "status" : "current",
             "linkage" : [
-                "sPDUMasterStatusMSPIndex",
+                "sPDUMainStatusMSPIndex",
             ],
             "description" :
-                """The MasterSwitch pluses to gather status from.""",
+                """The MainSwitch pluses to gather status from.""",
         }, # row
-        "sPDUMasterStatusMSPIndex" : {
+        "sPDUMainStatusMSPIndex" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.2.1.1",
@@ -12501,9 +12501,9 @@ in the sPDUMasterStatusMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus entry.""",
+                """The index to the MainSwitch plus entry.""",
         }, # column
-        "sPDUMasterStatusMSPName" : {
+        "sPDUMainStatusMSPName" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.2.1.2",
@@ -12513,11 +12513,11 @@ in the sPDUMasterStatusMSPTableSize OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
-        "sPDUMasterStatusMSPOutletCount" : {
+        "sPDUMainStatusMSPOutletCount" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.6.4.2.1.3",
@@ -12528,7 +12528,7 @@ using the sPDUMasterConfigMSPName OID.""",
             "access" : "readonly",
             "description" :
                 """Getting this OID will return the number of controllable
-outlets for this MasterSwitch plus.""",
+outlets for this MainSwitch plus.""",
         }, # column
         "sPDUOutletControlMSP" : {
             "nodetype" : "node",
@@ -12542,7 +12542,7 @@ outlets for this MasterSwitch plus.""",
             "status" : "current",
             "description" :
                 """Allows for control of individual outlet switches. The number of
-entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
+entries is contained in the sPDUMainStatusMSPOutletCount OID.""",
         }, # table
         "sPDUOutletControlMSPEntry" : {
             "nodetype" : "row",
@@ -12566,7 +12566,7 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus.""",
+                """The index to the MainSwitch plus.""",
         }, # column
         "sPDUOutletControlMSPName" : {
             "nodetype" : "column",
@@ -12578,9 +12578,9 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletControlMSPOutletIndex" : {
             "nodetype" : "column",
@@ -12702,7 +12702,7 @@ pending command to this outlet to be canceled.""",
             "status" : "current",
             "description" :
                 """Allows for configuration of individual outlets. The number of
-entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
+entries is contained in the sPDUMainStatusMSPOutletCount OID.""",
         }, # table
         "sPDUOutletConfigMSPallEntry" : {
             "nodetype" : "row",
@@ -12726,7 +12726,7 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus.""",
+                """The index to the MainSwitch plus.""",
         }, # column
         "sPDUOutletConfigMSPallName" : {
             "nodetype" : "column",
@@ -12738,9 +12738,9 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletConfigMSPallOutletIndex" : {
             "nodetype" : "column",
@@ -12804,7 +12804,7 @@ into the Annunciator control mode.""",
             "status" : "current",
             "description" :
                 """Allows for configuration of individual outlets. The number of
-entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
+entries is contained in the sPDUMainStatusMSPOutletCount OID.""",
         }, # table
         "sPDUOutletConfigMSPgsEntry" : {
             "nodetype" : "row",
@@ -12828,7 +12828,7 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus.""",
+                """The index to the MainSwitch plus.""",
         }, # column
         "sPDUOutletConfigMSPgsName" : {
             "nodetype" : "column",
@@ -12840,9 +12840,9 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletConfigMSPgsOutletIndex" : {
             "nodetype" : "column",
@@ -13148,7 +13148,7 @@ Allowed values are:
             "status" : "current",
             "description" :
                 """Allows for configuration of individual outlets. The number of
-entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
+entries is contained in the sPDUMainStatusMSPOutletCount OID.""",
         }, # table
         "sPDUOutletConfigMSPannunEntry" : {
             "nodetype" : "row",
@@ -13172,7 +13172,7 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus.""",
+                """The index to the MainSwitch plus.""",
         }, # column
         "sPDUOutletConfigMSPannunName" : {
             "nodetype" : "column",
@@ -13184,9 +13184,9 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletConfigMSPannunOutletIndex" : {
             "nodetype" : "column",
@@ -13305,7 +13305,7 @@ Allowed values are:
             "status" : "current",
             "description" :
                 """Allows for configuration of individual outlets. The number of
-entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
+entries is contained in the sPDUMainStatusMSPOutletCount OID.""",
         }, # table
         "sPDUOutletConfigMSPmupsEntry" : {
             "nodetype" : "row",
@@ -13329,7 +13329,7 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch plus.""",
+                """The index to the MainSwitch plus.""",
         }, # column
         "sPDUOutletConfigMSPmupsName" : {
             "nodetype" : "column",
@@ -13341,9 +13341,9 @@ entries is contained in the sPDUMasterStatusMSPOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletConfigMSPmupsOutletIndex" : {
             "nodetype" : "column",
@@ -13696,7 +13696,7 @@ Probe 2 high temperature alarm for this outlet.""",
             "status" : "current",
             "description" :
                 """Allows for getting of status of individual outlets. The number of
-entries is contained in the sPDUMasterStatusOutletCount OID.""",
+entries is contained in the sPDUMainStatusOutletCount OID.""",
         }, # table
         "sPDUOutletStatusMSPEntry" : {
             "nodetype" : "row",
@@ -13720,7 +13720,7 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The index to the MasterSwitch MSP.""",
+                """The index to the MainSwitch MSP.""",
         }, # column
         "sPDUOutletStatusMSPName" : {
             "nodetype" : "column",
@@ -13732,9 +13732,9 @@ entries is contained in the sPDUMasterStatusOutletCount OID.""",
             },
             "access" : "readonly",
             "description" :
-                """The name of the MasterSwitch plus. The maximum 
+                """The name of the MainSwitch plus. The maximum 
 value is 23 characters. The name is set by
-using the sPDUMasterConfigMSPName OID.""",
+using the sPDUMainConfigMSPName OID.""",
         }, # column
         "sPDUOutletStatusMSPOutletIndex" : {
             "nodetype" : "column",
@@ -13932,7 +13932,7 @@ This field can be configured from the dm3ConfigSysDescriptionText OID.""",
             },
             "access" : "readonly",
             "description" :
-                """Integer representation of the hardware revision of the Master Controller board.""",
+                """Integer representation of the hardware revision of the Main Controller board.""",
         }, # scalar
         "dm3IdentSysFWVersion" : {
             "nodetype" : "scalar",
@@ -13944,7 +13944,7 @@ This field can be configured from the dm3ConfigSysDescriptionText OID.""",
             },
             "access" : "readonly",
             "description" :
-                """Integer representation of the power plant Master Controller firmware revision.""",
+                """Integer representation of the power plant Main Controller firmware revision.""",
         }, # scalar
         "dm3Config" : {
             "nodetype" : "node",
@@ -14022,7 +14022,7 @@ entries is contained in the dm3ConfigSysDescriptionTableSize OID.""",
             },
             "access" : "readwrite",
             "description" :
-                """Ambient high temperature threshold.  Temperature sensor located on Master
+                """Ambient high temperature threshold.  Temperature sensor located on Main
 Controller board.
 
 Values are represented in thousandths of a degree.
@@ -14109,7 +14109,7 @@ alarm condition.""",
             },
             "access" : "readwrite",
             "description" :
-                """Ambient low temperature threshold.  Temperature sensor located on Master
+                """Ambient low temperature threshold.  Temperature sensor located on Main
 Controller board.
 
 Values are represented in thousandths of a degree.
@@ -15285,7 +15285,7 @@ Attempts to set the value above or below the acceptable range of the powerplant
             "access" : "readwrite",
             "description" :
                 """Rectifier Fail Safe point.  This OID represents the value sent to rectifier controllers
-to use in the event of communications loss with the Master Controller or Master Controller
+to use in the event of communications loss with the Main Controller or Main Controller
 board failure.
 
 Values are represented in thousandths of Volts (mV).
@@ -15303,7 +15303,7 @@ Attempts to set the value above or below the acceptable range of the powerplant
             "access" : "readwrite",
             "description" :
                 """Rectifier Communication Fail timeout.  This OID represents the time interval in which there is no 
-communication between the rectifier and the master controller at which the rectifier will reset 
+communication between the rectifier and the main controller at which the rectifier will reset 
 all its values to default.
 
 Values are represented in hundredths of Seconds.
@@ -16210,7 +16210,7 @@ Attempts to set the value above or below the acceptable range of the powerplant
             "access" : "readwrite",
             "description" :
                 """Converter Fail Safe point.  This OID represents the value sent to converter controllers
-to use in the event of communications loss with the Master Controller or Master Controller
+to use in the event of communications loss with the Main Controller or Main Controller
 board failure.
 
 Values are represented in thousandths of Volts (mV).
@@ -16279,7 +16279,7 @@ Attempts to set the value above or below the acceptable range of the powerplant
             "access" : "readwrite",
             "description" :
                 """Converter Communication Fail timeout.  This OID represents the time interval in which there is no 
-communication between the converter and the master controller at which the converter will reset 
+communication between the converter and the main controller at which the converter will reset 
 all its values to default.
 
 Values are represented in hundredths of Seconds.
@@ -17736,7 +17736,7 @@ alarm condition.""",
             },
             "access" : "readonly",
             "description" :
-                """System temperature based on sensor on Master Controller PCB.
+                """System temperature based on sensor on Main Controller PCB.
 
 Values are represented in thousandths of a degree.
 Units are displayed in the scale shown in
@@ -22011,7 +22011,7 @@ Returns (-1) if unsupported.""",
             },
             "access" : "readonly",
             "description" :
-                """Integer representation of the power plant Master Controller firmware revision.""",
+                """Integer representation of the power plant Main Controller firmware revision.""",
         }, # scalar
         "dcmim2Control" : {
             "nodetype" : "node",
@@ -22448,7 +22448,7 @@ statusOpened (2) will be returned if the LVD is opened.""",
             },
             "access" : "readonly",
             "description" :
-                """System temperature based on sensor on Master Controller PCB.
+                """System temperature based on sensor on Main Controller PCB.
 
 Values are represented in thousandths of a degree.
 Units are displayed in the scale shown in
@@ -30518,7 +30518,7 @@ Getting this OID will return the noCommandAll (1) value.""",
             "description" :
                 """The amount of delay, in seconds, between when
 power is provided to the Switched Rack PDU and 
-when the Switched Rack PDU provides basic master 
+when the Switched Rack PDU provides basic main 
 power to the outlets.       
 
 Allowed values are:
@@ -61828,7 +61828,7 @@ NOTE: -1 will be returned if the ARU is not communicating.
 Values are represented in whole number degrees using the 
 units specified in the rARUStatusSysTempUnits OID (Celsius or Fahrenheit).""",
         }, # column
-        "rARUConfigAruMasterControl" : {
+        "rARUConfigAruMainControl" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.14.2.1.1.6",
@@ -61848,7 +61848,7 @@ units specified in the rARUStatusSysTempUnits OID (Celsius or Fahrenheit).""",
             },
             "access" : "readwrite",
             "description" :
-                """This is the master on/off control for the ARU.""",
+                """This is the main on/off control for the ARU.""",
         }, # column
         "rARUStatus" : {
             "nodetype" : "node",
@@ -62268,7 +62268,7 @@ commsLost(3) indicates communication had been established, but is no device.""",
 exhaust air temperature has exceeded the setting specified in the 
 rARUConfigAruTempOvrdSetpoint OID.""",
         }, # column
-        "rARUStatusAruMasterControl" : {
+        "rARUStatusAruMainControl" : {
             "nodetype" : "column",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.1.14.3.3.1.13",
@@ -62288,7 +62288,7 @@ rARUConfigAruTempOvrdSetpoint OID.""",
             },
             "access" : "readonly",
             "description" :
-                """This is the master on/off control for the ARU.""",
+                """This is the main on/off control for the ARU.""",
         }, # column
         "rARUStatusAruTotalAirflow" : {
             "nodetype" : "column",
@@ -77763,7 +77763,7 @@ displayReverse(2) indicates upside down orientation""",
             "description" :
                 """The amount of delay, measured in seconds, between
 when power is provided to the Rack PDU and when
-the Rack PDU provides basic master power to the
+the Rack PDU provides basic main power to the
 outlets""",
         }, # column
         "rPDU2DeviceConfigLowLoadPowerThreshold" : {
@@ -81027,37 +81027,37 @@ and is measuring a humidity above the max threshold.""",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.3.2",
         }, # node
-        "masterSwitch" : {
+        "mainSwitch" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4",
         }, # node
-        "masterSwitchV1" : {
+        "mainSwitchV1" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.1",
         }, # node
-        "masterSwitchV2" : {
+        "mainSwitchV2" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.2",
         }, # node
-        "masterSwitchVM" : {
+        "mainSwitchVM" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.3",
         }, # node
-        "masterSwitchMSP" : {
+        "mainSwitchMSP" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.4",
         }, # node
-        "masterSwitchrPDU" : {
+        "mainSwitchrPDU" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.5",
         }, # node
-        "masterSwitchrPDU2" : {
+        "mainSwitchrPDU2" : {
             "nodetype" : "node",
             "moduleName" : "PowerNet-MIB",
             "oid" : "1.3.6.1.4.1.318.1.3.4.6",
@@ -83173,7 +83173,7 @@ have rebooted.""",
             },
             "description" :
                 """WARNING: The specified PDU outlet has changed configuration.
-If sPDUOutletConfigIndex equals zero, then the Master outlet 
+If sPDUOutletConfigIndex equals zero, then the Main outlet 
 has changed configuration.""",
         }, # notification
         "accessViolationConsole" : {
@@ -83759,11 +83759,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.85",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83773,7 +83773,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: Communications with the MasterSwitch VM has been established.""",
+                """INFORMATIONAL: Communications with the MainSwitch VM has been established.""",
         }, # notification
         "msvmCommunicationLost" : {
             "nodetype" : "notification",
@@ -83781,11 +83781,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.86",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83795,7 +83795,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """SEVERE: Communications with the MasterSwitch VM has been lost.""",
+                """SEVERE: Communications with the MainSwitch VM has been lost.""",
         }, # notification
         "msvmOverload" : {
             "nodetype" : "notification",
@@ -83803,11 +83803,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.87",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83817,7 +83817,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """SEVERE: The MasterSwitch VM in an overload condition.""",
+                """SEVERE: The MainSwitch VM in an overload condition.""",
         }, # notification
         "msvmOverloadCleared" : {
             "nodetype" : "notification",
@@ -83825,11 +83825,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.88",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83839,7 +83839,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: The overload condition on the MasterSwitch VM has been cleared.""",
+                """INFORMATIONAL: The overload condition on the MainSwitch VM has been cleared.""",
         }, # notification
         "msvmOutletOn" : {
             "nodetype" : "notification",
@@ -83847,11 +83847,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.89",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83869,7 +83869,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet on the MasterSwitch VM has turned on.""",
+                """INFORMATIONAL: An outlet on the MainSwitch VM has turned on.""",
         }, # notification
         "msvmOutletOff" : {
             "nodetype" : "notification",
@@ -83877,11 +83877,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.90",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83899,7 +83899,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet on the MasterSwitch VM has turned off.""",
+                """INFORMATIONAL: An outlet on the MainSwitch VM has turned off.""",
         }, # notification
         "msvmDeviceConfigChange" : {
             "nodetype" : "notification",
@@ -83907,11 +83907,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.91",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83921,7 +83921,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: A device configuration change has been made on a MasterSwitch VM.""",
+                """INFORMATIONAL: A device configuration change has been made on a MainSwitch VM.""",
         }, # notification
         "msvmOutletConfigChange" : {
             "nodetype" : "notification",
@@ -83929,11 +83929,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.92",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83951,7 +83951,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet configuration change has been made on a MasterSwitch VM.""",
+                """INFORMATIONAL: An outlet configuration change has been made on a MainSwitch VM.""",
         }, # notification
         "msvmLowLoad" : {
             "nodetype" : "notification",
@@ -83959,11 +83959,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.93",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83973,7 +83973,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: The MasterSwitch VM has violated the low load threshold.""",
+                """INFORMATIONAL: The MainSwitch VM has violated the low load threshold.""",
         }, # notification
         "msvmLowLoadCleared" : {
             "nodetype" : "notification",
@@ -83981,11 +83981,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.94",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -83995,7 +83995,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: The low load condition on the MasterSwitch VM has been cleared.""",
+                """INFORMATIONAL: The low load condition on the MainSwitch VM has been cleared.""",
         }, # notification
         "msvmNearOverload" : {
             "nodetype" : "notification",
@@ -84003,11 +84003,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.95",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84017,7 +84017,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """SEVERE: The MasterSwitch VM is approaching an overload condition.""",
+                """SEVERE: The MainSwitch VM is approaching an overload condition.""",
         }, # notification
         "msvmNearOverloadCleared" : {
             "nodetype" : "notification",
@@ -84025,11 +84025,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.96",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84039,7 +84039,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: The near overload condition on the MasterSwitch VM has been cleared.""",
+                """INFORMATIONAL: The near overload condition on the MainSwitch VM has been cleared.""",
         }, # notification
         "msvmPowerSupplyStatusChange" : {
             "nodetype" : "notification",
@@ -84047,11 +84047,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.97",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlVMIndex" : {
+                "sPDUMainControlVMIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlVMName" : {
+                "sPDUMainControlVMName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84065,7 +84065,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """WARNING: The power supply status of the MasterSwitch VM has changed.""",
+                """WARNING: The power supply status of the MainSwitch VM has changed.""",
         }, # notification
         "mspCommunicationEstablished" : {
             "nodetype" : "notification",
@@ -84073,11 +84073,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.98",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84087,7 +84087,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: Communications with the MasterSwitch plus has been established.""",
+                """INFORMATIONAL: Communications with the MainSwitch plus has been established.""",
         }, # notification
         "mspCommunicationLost" : {
             "nodetype" : "notification",
@@ -84095,11 +84095,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.99",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84109,7 +84109,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """SEVERE: Communications with the MasterSwitch plus has been lost.""",
+                """SEVERE: Communications with the MainSwitch plus has been lost.""",
         }, # notification
         "mspOutletOn" : {
             "nodetype" : "notification",
@@ -84117,11 +84117,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.100",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84139,7 +84139,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet on the MasterSwitch plus has turned on.""",
+                """INFORMATIONAL: An outlet on the MainSwitch plus has turned on.""",
         }, # notification
         "mspOutletOff" : {
             "nodetype" : "notification",
@@ -84147,11 +84147,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.101",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84169,7 +84169,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet on the MasterSwitch plus has turned off.""",
+                """INFORMATIONAL: An outlet on the MainSwitch plus has turned off.""",
         }, # notification
         "mspDeviceConfigChange" : {
             "nodetype" : "notification",
@@ -84177,11 +84177,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.102",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84191,7 +84191,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: A device configuration change has been made on a MasterSwitch plus.""",
+                """INFORMATIONAL: A device configuration change has been made on a MainSwitch plus.""",
         }, # notification
         "mspOutletConfigChange" : {
             "nodetype" : "notification",
@@ -84199,11 +84199,11 @@ The first variable is the fault condition.""",
             "oid" : "1.3.6.1.4.1.318.0.103",
             "status" : "current",
             "objects" : {
-                "sPDUMasterControlMSPIndex" : {
+                "sPDUMainControlMSPIndex" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
-                "sPDUMasterControlMSPName" : {
+                "sPDUMainControlMSPName" : {
                     "nodetype" : "object",
                     "module" : "PowerNet-MIB"
                 },
@@ -84221,7 +84221,7 @@ The first variable is the fault condition.""",
                 },
             },
             "description" :
-                """INFORMATIONAL: An outlet configuration change has been made on a MasterSwitch plus.""",
+                """INFORMATIONAL: An outlet configuration change has been made on a MainSwitch plus.""",
         }, # notification
         "rsSourceSwitched" : {
             "nodetype" : "notification",

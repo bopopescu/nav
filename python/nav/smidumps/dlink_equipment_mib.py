@@ -783,7 +783,7 @@ table.""",
             "description" :
                 """This object is a set of system LED indicators. The first four
 octets are defined as a system LED. The first LED is a power LED.
-The second LED in the stacking module is a master LED but in the chassis is
+The second LED in the stacking module is a main LED but in the chassis is
 a status LED. The third LED is a console LED. The fourth LED is
 an RPS (Redundancy Power Supply) LED. The other octets are the
 logical port LED (following dot1dBasePort ordering). Every two
@@ -847,11 +847,11 @@ the fourth LED is the SD card LED. The following description is for the SD card 
                         "nodetype" : "namednumber",
                         "number" : "3"
                     },
-                    "master" : {
+                    "main" : {
                         "nodetype" : "namednumber",
                         "number" : "4"
                     },
-                    "slave" : {
+                    "subordinate" : {
                         "nodetype" : "namednumber",
                         "number" : "5"
                     },
@@ -867,12 +867,12 @@ other (1) - This object indicates the stacking mode that the user
     has configured for the unit. This object can only be configured
     when the device is in standalone mode.
 auto (2) - The system will auto-assign a stacking role to this
-    unit to be: standalone(3), master(4), or slave(5).
+    unit to be: standalone(3), main(4), or subordinate(5).
 standalone (3) - The unit is forced to be in standalone mode.
-master (4) - The unit is forced to be in master mode. If this unit is
-    selected to be a master, the unit can modify the configuration of the stacking system.
-slave (5) - The unit is forced to be in slave mode. If this unit is
-    selected to be a slave, it can only view the configuration of
+main (4) - The unit is forced to be in main mode. If this unit is
+    selected to be a main, the unit can modify the configuration of the stacking system.
+subordinate (5) - The unit is forced to be in subordinate mode. If this unit is
+    selected to be a subordinate, it can only view the configuration of
     the stacking system.""",
         }, # column
         "swUnitMgmtCurrentMode" : {
@@ -895,15 +895,15 @@ slave (5) - The unit is forced to be in slave mode. If this unit is
                         "nodetype" : "namednumber",
                         "number" : "3"
                     },
-                    "master" : {
+                    "main" : {
                         "nodetype" : "namednumber",
                         "number" : "4"
                     },
-                    "slave" : {
+                    "subordinate" : {
                         "nodetype" : "namednumber",
                         "number" : "5"
                     },
-                    "backup-master" : {
+                    "backup-main" : {
                         "nodetype" : "namednumber",
                         "number" : "6"
                     },
@@ -1265,7 +1265,7 @@ take effect after the next boot.""",
             "description" :
                 """Indicates the stacking mode supported in the system.""",
         }, # scalar
-        "swUnitStackForceMasterRole" : {
+        "swUnitStackForceMainRole" : {
             "nodetype" : "scalar",
             "moduleName" : "EQUIPMENT-MIB",
             "oid" : "1.3.6.1.4.1.171.12.11.1.9.7",
@@ -1285,7 +1285,7 @@ take effect after the next boot.""",
             },
             "access" : "readwrite",
             "description" :
-                """Indicates the stack force master role mode supported in the system.""",
+                """Indicates the stack force main role mode supported in the system.""",
         }, # scalar
         "swUnitStackTrapState" : {
             "nodetype" : "scalar",
@@ -2129,11 +2129,11 @@ If no alarm message is configured on this channel, a default alarm message will 
             "syntax" : {
                 "type" :                 {
                     "basetype" : "Enumeration",
-                    "backup-to-master" : {
+                    "backup-to-main" : {
                         "nodetype" : "namednumber",
                         "number" : "1"
                     },
-                    "slave-to-master" : {
+                    "subordinate-to-main" : {
                         "nodetype" : "namednumber",
                         "number" : "2"
                     },

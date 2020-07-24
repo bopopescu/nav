@@ -2115,7 +2115,7 @@ subject.  Zero if unavailable or inapplicable.""",
                         "nodetype" : "namednumber",
                         "number" : "1"
                     },
-                    "master" : {
+                    "main" : {
                         "nodetype" : "namednumber",
                         "number" : "2"
                     },
@@ -2137,9 +2137,9 @@ subject.  Zero if unavailable or inapplicable.""",
             "description" :
                 """The election priority of redundancy configuration for
 this subject.  The value 'notApplicable' means no
-specific instance is configured to be master or
+specific instance is configured to be main or
 backup; whichever component boots up first becomes a
-master.""",
+main.""",
         }, # column
         "jnxRedundancyState" : {
             "nodetype" : "column",
@@ -2153,7 +2153,7 @@ master.""",
                         "nodetype" : "namednumber",
                         "number" : "1"
                     },
-                    "master" : {
+                    "main" : {
                         "nodetype" : "namednumber",
                         "number" : "2"
                     },
@@ -2184,7 +2184,7 @@ master.""",
                 """The total number of switchover as perceived by
 this subject since routing engine is up and running.
 The switchover is defined as a change in state of
-jnxRedundancyState from master to backup or vice
+jnxRedundancyState from main to backup or vice
 versa.	Its value is reset when the routing engine
 is reset or rebooted.""",
         }, # column
@@ -2199,7 +2199,7 @@ is reset or rebooted.""",
             "access" : "readonly",
             "description" :
                 """The value of sysUpTime when the jnxRedundancyState
-of this subject was last switched over from master
+of this subject was last switched over from main
 to backup or vice versa.  Zero if unknown or never
 switched over since the routing engine is up and
 running.""",
@@ -2245,8 +2245,8 @@ running.""",
             "access" : "readonly",
             "description" :
                 """The period of sending keepalive messages between
-the master and backup subsystems.  It is a system-wide
-preset value in seconds used by internal mastership
+the main and backup subsystems.  It is a system-wide
+preset value in seconds used by internal mainship
 resolution.  Zero if unavailable or inapplicable.""",
         }, # column
         "jnxRedundancyKeepaliveTimeout" : {
@@ -2289,7 +2289,7 @@ subsystems.  Zero if unavailable or inapplicable.""",
             "access" : "readonly",
             "description" :
                 """The total number of losses on keepalive messages 
-between the master and backup subsystems as perceived
+between the main and backup subsystems as perceived
 by this subject since the system is up and running.  
 Zero if unavailable or inapplicable.""",
         }, # column
@@ -2712,7 +2712,7 @@ subject.  Zero if unavailable or inapplicable.""",
                         "nodetype" : "namednumber",
                         "number" : "10"
                     },
-                    "masterClockDown" : {
+                    "mainClockDown" : {
                         "nodetype" : "namednumber",
                         "number" : "11"
                     },
@@ -3318,7 +3318,7 @@ the SNMP entity, acting in an agent role, has
 detected that the specified hardware component
 in the chassis has experienced a redundancy 
 switchover event defined as a change in state
-of jnxRedundancyState from master to backup or
+of jnxRedundancyState from main to backup or
 vice versa.""",
         }, # notification
         "jnxFruRemoval" : {

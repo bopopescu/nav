@@ -203,7 +203,7 @@ application and can be included in VRRP-related SNMP traps.""",
                         "nodetype" : "namednumber",
                         "number" : "2"
                     },
-                    "master" : {
+                    "main" : {
                         "nodetype" : "namednumber",
                         "number" : "3"
                     },
@@ -218,9 +218,9 @@ three defined values:
     virtual router is waiting for a startup event.
 
   - `backup', which indicates the virtual router is
-    monitoring the availability of the master router.
+    monitoring the availability of the main router.
 
-  - `master', which indicates that the virtual router
+  - `main', which indicates that the virtual router
     is forwarding packets for IP addresses that are
     associated with this router.
 
@@ -252,9 +252,9 @@ transitions in the value of this object.""",
                 """This object will enable/disable the virtual router
 function. Setting the value to `up', will transition
 the state of the virtual router from `initialize' to `backup'
-or `master', depending on the value of `vrrpOperPriority'.
+or `main', depending on the value of `vrrpOperPriority'.
 Setting the value to `down', will transition  the
-router from `master' or `backup' to `initialize'. State
+router from `main' or `backup' to `initialize'. State
 transitions may not be immediate; they sometimes depend on
 other factors, such as the interface (IF) state.
 
@@ -289,13 +289,13 @@ in order for this object to be set to `up'.""",
             "default" : "100",
             "description" :
                 """This object specifies the priority to be used for the
-virtual router master election process. Higher values imply
+virtual router main election process. Higher values imply
 higher priority.
 
 A priority of '0', although not settable, is sent by
-the master router to indicate that this router has ceased
+the main router to indicate that this router has ceased
 to participate in VRRP and a backup virtual router should
-transition  to become a new master.
+transition  to become a new main.
 
 A priority of 255 is used for the router that owns the
 associated IP address(es).""",
@@ -327,7 +327,7 @@ virtual router. This number is equal to the number of rows
 in the vrrpAssoIpAddrTable that correspond to a given IF
 index/VRID pair.""",
         }, # column
-        "vrrpOperMasterIpAddr" : {
+        "vrrpOperMainIpAddr" : {
             "nodetype" : "column",
             "moduleName" : "VRRP-MIB",
             "oid" : "1.3.6.1.2.1.68.1.3.1.7",
@@ -337,7 +337,7 @@ index/VRID pair.""",
             },
             "access" : "readonly",
             "description" :
-                """The master router's real (primary) IP address. This is
+                """The main router's real (primary) IP address. This is
 the IP address listed as the source in VRRP advertisement
 last received by this virtual router.""",
         }, # column
@@ -354,8 +354,8 @@ last received by this virtual router.""",
             "description" :
                 """In the case where there is more than one IP address for
 a given `ifIndex', this object is used to specify the IP
-address that will become the `vrrpOperMasterIpAddr', should
-the virtual router transition from backup to master. If
+address that will become the `vrrpOperMainIpAddr', should
+the virtual router transition from backup to main. If
 this object is set to 0.0.0.0, the IP address which is
 numerically lowest will be selected.""",
         }, # column
@@ -448,7 +448,7 @@ of length zero.""",
             "units" : "seconds",
             "description" :
                 """The time interval, in seconds, between sending
-advertisement messages. Only the master router sends
+advertisement messages. Only the main router sends
 VRRP advertisements.""",
         }, # column
         "vrrpOperPreemptMode" : {
@@ -463,7 +463,7 @@ VRRP advertisements.""",
             "default" : "true",
             "description" :
                 """Controls whether a higher priority virtual router will
-preempt a lower priority master.""",
+preempt a lower priority main.""",
         }, # column
         "vrrpOperVirtualRouterUpTime" : {
             "nodetype" : "column",
@@ -715,7 +715,7 @@ VRID for this virtual router.""",
                 """An entry in the table, containing statistics information
 about a given virtual router.""",
         }, # row
-        "vrrpStatsBecomeMaster" : {
+        "vrrpStatsBecomeMain" : {
             "nodetype" : "column",
             "moduleName" : "VRRP-MIB",
             "oid" : "1.3.6.1.2.1.68.2.4.1.1",
@@ -893,20 +893,20 @@ less than the length of the VRRP header.""",
     }, # nodes
 
     "notifications" : {
-        "vrrpTrapNewMaster" : {
+        "vrrpTrapNewMain" : {
             "nodetype" : "notification",
             "moduleName" : "VRRP-MIB",
             "oid" : "1.3.6.1.2.1.68.0.1",
             "status" : "current",
             "objects" : {
-                "vrrpOperMasterIpAddr" : {
+                "vrrpOperMainIpAddr" : {
                     "nodetype" : "object",
                     "module" : "VRRP-MIB"
                 },
             },
             "description" :
-                """The newMaster trap indicates that the sending agent
-has transitioned to 'Master' state.""",
+                """The newMain trap indicates that the sending agent
+has transitioned to 'Main' state.""",
         }, # notification
         "vrrpTrapAuthFailure" : {
             "nodetype" : "notification",
@@ -967,7 +967,7 @@ of this trap is optional.""",
                     "nodetype" : "member",
                     "module" : "VRRP-MIB"
                 },
-                "vrrpOperMasterIpAddr" : {
+                "vrrpOperMainIpAddr" : {
                     "nodetype" : "member",
                     "module" : "VRRP-MIB"
                 },
@@ -1029,7 +1029,7 @@ of this trap is optional.""",
                     "nodetype" : "member",
                     "module" : "VRRP-MIB"
                 },
-                "vrrpStatsBecomeMaster" : {
+                "vrrpStatsBecomeMain" : {
                     "nodetype" : "member",
                     "module" : "VRRP-MIB"
                 },
@@ -1105,7 +1105,7 @@ of this trap is optional.""",
             "oid" : "1.3.6.1.2.1.68.3.2.4",
             "status" : "current",
             "members" : {
-                "vrrpTrapNewMaster" : {
+                "vrrpTrapNewMain" : {
                     "nodetype" : "member",
                     "module" : "VRRP-MIB"
                 },

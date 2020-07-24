@@ -1049,18 +1049,18 @@ A null entry in this field denotes all switches in the switch stack.""",
             "access" : "readwrite",
             "description" :
                 """The result of the download will depend on whether the boot_up option is specified.
-Case 1: In the case where the master unit provides the file system and the slave unit does
+Case 1: In the case where the main unit provides the file system and the subordinate unit does
    not provide the file system, when boot_up is specified, the file will be downloaded
-   to the boot_up image on the slave. If boot_up is not specified, then the file will
-   not be downloaded to this slave unit.
+   to the boot_up image on the subordinate. If boot_up is not specified, then the file will
+   not be downloaded to this subordinate unit.
 
-Case 2: In the case where the master unit does not provide the file system and the slave unit
+Case 2: In the case where the main unit does not provide the file system and the subordinate unit
    provides the file system, when boot_up is specified, the file will be downloaded to
-   the boot_up image on the slave unit. If boot_up is not specified, the file will
-   not be downloaded to this slave unit.
+   the boot_up image on the subordinate unit. If boot_up is not specified, the file will
+   not be downloaded to this subordinate unit.
 
-Case 3: In the case where the master unit and the slave unit both support or do not support
-   the file system, the file will be downloaded to the specified file on the slave unit.
+Case 3: In the case where the main unit and the subordinate unit both support or do not support
+   the file system, the file will be downloaded to the specified file on the subordinate unit.
    If boot_up is specified, the downloaded file will be assigned as the boot_up image.
 
 True: boot_up option is specified.
@@ -3146,18 +3146,18 @@ If this list is set to null it represents all stack switches.""",
             "access" : "readwrite",
             "description" :
                 """The result of the download will depend on whether the boot_up option has been specified.
-Case 1: In the case of the master unit providing the file system and the slave unit
+Case 1: In the case of the main unit providing the file system and the subordinate unit
    not providing the file system, when the boot_up parameter is specified, then the file will
-   be downloaded to the boot_up image on the slave. If the boot_up parameter is not specified,
-   then the file will not be downloaded to this slave unit.
+   be downloaded to the boot_up image on the subordinate. If the boot_up parameter is not specified,
+   then the file will not be downloaded to this subordinate unit.
 
-Case 2: In the case of the master unit not providing the file system and the slave unit
+Case 2: In the case of the main unit not providing the file system and the subordinate unit
    providing the file system, when the boot_up parameter is specified, then the file will be downloaded
-   to the boot_up image on the slave unit. If boot_up is not specified, then the file will
-   not be downloaded to this slave unit.
+   to the boot_up image on the subordinate unit. If boot_up is not specified, then the file will
+   not be downloaded to this subordinate unit.
 
-Case 3: In the case of the master unit and the slave unit both supporting or not supporting the
-   file system, the file will be downloaded to the specified file on the slave unit. If boot_up
+Case 3: In the case of the main unit and the subordinate unit both supporting or not supporting the
+   file system, the file will be downloaded to the specified file on the subordinate unit. If boot_up
    is specified, the downloaded file will be assigned as the boot_up image.
 
 True: boot_up option is specified.
